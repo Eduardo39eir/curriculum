@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Profissional - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+        
+        body, .content-wrapper, h1, h2, h3, h4, h5, p, span, a, button, label, .accordion-button, .form-control, .form-select {
+            font-family: 'Outfit', sans-serif !important;
+        }
+
+        /* ==========================================================================
+           CONFIGURAÇÃO DA TRANSIÇÃO DE CORES (LIGHT / DARK MODE GLOBAL)
+           ========================================================================== */
+        body, .card, footer, nav, label, .list-group-item, h3, h5, .accordion-button, .accordion-item, .offcanvas, .phone, .time, .battery, .network, .toggle-label, .toggle-btn, .crescent, .circle, .dark, .light, .table, .modal-content, .form-control, .form-select, .theme-toggle-label, .sun-icon, .moon-icon {
+            transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        /* Variáveis de cores para o tema escuro geral */
+        #switch:checked ~ .content-wrapper {
+            background-color: #1e1c24 !important;
+            color: #f7f8f7 !important;
+        }
+        #switch:checked ~ .content-wrapper .card,
+        #switch:checked ~ .content-wrapper .accordion-item,
+        #switch:checked ~ .content-wrapper .accordion-button,
+        #switch:checked ~ .content-wrapper .list-group-item,
+        #switch:checked ~ .content-wrapper .modal-content {
+            background-color: #26242E !important;
+            color: #ffffff !important;
+            border-color: #3d3a4a !important;
+        }
+        #switch:checked ~ .content-wrapper .accordion-button:not(.collapsed) {
+            background-color: rgba(137, 131, 247, 0.1) !important;
+            color: #3b8bfa !important;
+        }
+        #switch:checked ~ .content-wrapper .accordion-button {
+            color: #ffffff !important;
+        }
+        #switch:checked ~ .content-wrapper .text-muted,
+        #switch:checked ~ .content-wrapper .text-secondary,
+        #switch:checked ~ .content-wrapper .form-label {
+            color: #b3b0c2 !important;
+        }
+        #switch:checked ~ .content-wrapper .text-dark {
+            color: #ffffff !important;
+        }
+        #switch:checked ~ .content-wrapper .bg-secondary-subtle {
+            background-color: #34323D !important;
+        }
+        #switch:checked ~ .content-wrapper .offcanvas {
+            background-color: #26242E !important;
+            color: #ffffff !important;
+        }
+        #switch:checked ~ .content-wrapper .form-control,
+        #switch:checked ~ .content-wrapper .form-select {
+            background-color: #34323D !important;
+            color: #ffffff !important;
+            border-color: #4a4758 !important;
+        }
+
+        /* Ajuste fino para combinar o estilo do botão do accordion com a identidade visual */
+        .accordion-button:not(.collapsed) {
+            background-color: rgba(13, 110, 253, 0.05);
+            color: #0d6efd;
+            box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
+        }
+        .accordion-button:focus {
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+            border-color: rgba(13, 110, 253, 0.25);
+        }
+
+        /* ==========================================================================
+           HEADER / NAVBAR TRADITIONAL FULL-WIDTH GLASSMORPHIC
+           ========================================================================== */
+        .content-wrapper { padding-top: 80px; }
+
+        .custom-navbar {
+            position: fixed !important;
+            top: 0; left: 0; width: 100%;
+            background-color: rgba(255,255,255,0.82) !important;
+            backdrop-filter: blur(18px) saturate(200%);
+            -webkit-backdrop-filter: blur(18px) saturate(200%);
+            border-bottom: 1px solid rgba(0,0,0,0.07) !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            transition: all 0.5s ease;
+            z-index: 1030;
+        }
+
+        #switch:checked ~ .content-wrapper .custom-navbar {
+            background-color: rgba(30, 28, 36, 0.8) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        /* Ajuste do botão menu hambúrguer para ficar visível no modo claro */
+        .navbar-toggler {
+            filter: invert(1);
+        }
+        #switch:checked ~ .content-wrapper .navbar-toggler {
+            filter: none;
+        }
+
+        .navbar-brand {
+            font-weight: 800 !important;
+            letter-spacing: 0.5px;
+            color: #0f172a !important;
+            transition: all 0.5s ease;
+        }
+
+        #switch:checked ~ .content-wrapper .navbar-brand {
+            color: #ffffff !important;
+        }
+        
+        .navbar-brand .accent-dot {
+            color: #0d6efd;
+        }
+
+        #switch:checked ~ .content-wrapper .navbar-brand .accent-dot {
+            color: #3b8bfa;
+        }
+
+        .nav-link {
+            color: #4a4a5a !important;
+            font-weight: 600;
+            padding: 0.5rem 1.2rem !important;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 50%;
+            width: 0; height: 2px;
+            background: linear-gradient(135deg, #0d6efd, #0d6efd);
+            transition: width 0.3s ease, left 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after { width: 70%; left: 15%; }
+        .nav-link:hover { color: #0d6efd !important; }
+        .nav-link.active { color: #0d6efd !important; }
+
+        #switch:checked ~ .content-wrapper .nav-link { color: #b8b8cc !important; }
+        #switch:checked ~ .content-wrapper .nav-link::after { background: linear-gradient(135deg, #3b8bfa, #A3DAFB); }
+        #switch:checked ~ .content-wrapper .nav-link:hover { color: #3b8bfa !important; }
+        #switch:checked ~ .content-wrapper .nav-link.active { color: #3b8bfa !important; }
+
+        /* Custom Theme Toggler Button */
+        .theme-toggle-label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            background-color: rgba(13, 110, 253, 0.05);
+            border: 1px solid rgba(13, 110, 253, 0.15);
+            color: #0d6efd;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .theme-toggle-label:hover {
+            background-color: rgba(13, 110, 253, 0.1);
+            transform: scale(1.05);
+        }
+
+        .theme-toggle-label .sun-icon {
+            position: absolute;
+            transform: rotate(0deg) scale(1);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+            opacity: 1;
+        }
+
+        .theme-toggle-label .moon-icon {
+            position: absolute;
+            transform: rotate(90deg) scale(0);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        #switch:checked ~ .content-wrapper .theme-toggle-label {
+            background-color: rgba(137, 131, 247, 0.1);
+            border: 1px solid rgba(137, 131, 247, 0.25);
+            color: #3b8bfa;
+        }
+
+        #switch:checked ~ .content-wrapper .theme-toggle-label:hover {
+            background-color: rgba(137, 131, 247, 0.15);
+            box-shadow: 0 0 15px rgba(137, 131, 247, 0.25);
+        }
+
+        #switch:checked ~ .content-wrapper .theme-toggle-label .sun-icon {
+            transform: rotate(-90deg) scale(0);
+            opacity: 0;
+        }
+
+        #switch:checked ~ .content-wrapper .theme-toggle-label .moon-icon {
+            transform: rotate(0deg) scale(1);
+            opacity: 1;
+        }
+
+        /* ==========================================================================
+           WIDGET SWITCH CUSTOMIZADO DO CELULAR
+           ========================================================================== */
+        [type="checkbox"] {
+            display: none;
+        }
+
+        .phone-container {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .phone {
+            position: relative;
+            z-index: 2;
+            width: 14rem;
+            height: 14rem;
+            background-color: #ffffff;
+            box-shadow: 0 4px 25px rgba(0,0,0,.1);
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .menu-phone {
+            font-size: 75%;
+            opacity: .6;
+            padding: .6rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .icons-phone {
+            display: flex;
+            margin-top: .2rem;
+        }
+
+        .battery {
+            width: .75rem;
+            height: .4rem;
+            background-color: black;
+        }
+
+        .network {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 5px 6px 5px;
+            border-color: transparent transparent black transparent;
+            transform: rotate(135deg);
+            margin: .1rem .4rem;
+        }
+
+        .time {
+            color: black;
+            font-weight: bold;
+        }
+
+        .content-phone {
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+            text-align: center;
+            width: 80%;
+            transform: translateY(-5%);
+        }
+
+        .circle {
+            position: relative;
+            border-radius: 100%;
+            width: 4.5rem;
+            height: 4.5rem;
+            background: linear-gradient(40deg, #FF0080, #FF8C00 70%);
+            margin: auto;
+        }
+
+        .crescent {
+            position: absolute;
+            border-radius: 100%;
+            right: -1px;
+            top: -1px;
+            width: 3.5rem;
+            height: 3.5rem;
+            background: white;
+            transform: scale(0);
+            transform-origin: top right;
+        }
+
+        label.toggle-label {
+            width: 100%;
+            height: 2.4rem;
+            background-color: rgba(0,0,0,.08);
+            border-radius: 100px;
+            position: relative;
+            margin: 1.2rem 0 0 0;
+            cursor: pointer;
+            display: block;
+        }
+
+        .toggle-btn {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 2.4rem;
+            width: 50%;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,.15);
+            border-radius: 100px;
+        }
+
+        .names-phone {
+            font-size: 80%;
+            font-weight: bolder;
+            color: black;
+            width: 70%;
+            margin-left: 15%;
+            top: 50%;
+            transform: translateY(-50%);
+            position: absolute;
+            display: flex;
+            justify-content: space-between;
+            user-select: none;
+            z-index: 5;
+        }
+
+        .names-phone p {
+            margin: 0;
+        }
+
+        .dark { opacity: .4; color: black; }
+        .light { opacity: 1; color: black; }
+
+        /* Comportamentos do Celular no Modo Escuro */
+        #switch:checked ~ .content-wrapper .phone { background-color: #26242E !important; border-color: rgba(255,255,255,0.1) !important; }
+        #switch:checked ~ .content-wrapper .phone .time { color: white !important; }
+        #switch:checked ~ .content-wrapper .phone .battery { background-color: white !important; }
+        #switch:checked ~ .content-wrapper .phone .network { border-color: transparent transparent white transparent !important; }
+        #switch:checked ~ .content-wrapper .phone label.toggle-label { background-color: rgba(255,255,255,.1) !important; }
+        #switch:checked ~ .content-wrapper .phone .toggle-btn { transform: translateX(100%) !important; background-color: #34323D !important; }
+        #switch:checked ~ .content-wrapper .phone .crescent { transform: scale(1) !important; background: #26242E !important; }
+        #switch:checked ~ .content-wrapper .phone .circle { background: linear-gradient(40deg, #3b8bfa, #A3DAFB 70%) !important; }
+        #switch:checked ~ .content-wrapper .phone .dark { opacity: 1 !important; color: white !important; }
+        #switch:checked ~ .content-wrapper .phone .light { opacity: .4 !important; color: #8a879a !important; }
+        #switch:checked ~ .content-wrapper .square { border-color: #3b8bfa; }
+
+        /* ==========================================================================
+           DESIGN PREMIUM - FONTES & CUSTOMIZAÇÃO ADICIONAL
+           ========================================================================== */
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+        body, .content-wrapper, h2, h3, h5, h6, p, span, a, button, label, .list-group-item, .accordion-button {
+            font-family: 'Outfit', sans-serif !important;
+        }
+
+        /* ==========================================================================
+           DESIGN PREMIUM - FONTES & CUSTOMIZAÇÃO ADICIONAL
+           ========================================================================== */
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+        body, .content-wrapper, h2, h3, h5, h6, p, span, a, button, label, .list-group-item, .accordion-button {
+            font-family: 'Outfit', sans-serif !important;
+        }
+
+        /* Profile Card Customizado (Design Glassmorphism Premium) */
+        .profile-card-uiverse {
+            --main-color: #0f172a;
+            --submain-color: #475569;
+            --bg-color: #ffffff;
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 40px !important;
+            background: linear-gradient(
+                0deg,
+                rgb(255, 255, 255) 0%,
+                rgb(244, 247, 251) 100%
+            ) !important;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 5px solid rgb(255, 255, 255) !important;
+            overflow: hidden;
+            box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px !important;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease, border-color 0.5s ease;
+        }
+
+        .card__img {
+            height: 180px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card__img svg {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 35px 35px 0 0;
+            opacity: 0.85;
+            transition: opacity 0.5s ease;
+        }
+
+        .card__avatar {
+            width: 114px;
+            height: 114px;
+            background: linear-gradient(135deg, #0d6efd, #0d6efd);
+            border-radius: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+            box-shadow: 0 8px 25px rgba(13, 110, 253, 0.25);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 5;
+        }
+
+        .profile-img-style-uiverse {
+            width: 102px;
+            height: 102px;
+            border-radius: 100%;
+            object-fit: cover;
+            border: 4px solid var(--bg-color);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.5s ease;
+        }
+
+        .card__title {
+            margin-top: 20px;
+            font-weight: 800;
+            font-size: 24px;
+            color: var(--main-color);
+            transition: color 0.5s ease;
+        }
+
+        .card__subtitle {
+            margin-top: 8px;
+            font-weight: 600;
+            font-size: 13.5px;
+            color: var(--submain-color);
+            line-height: 1.5;
+            transition: color 0.5s ease;
+        }
+
+        .card__bio-title {
+            color: var(--main-color);
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: color 0.5s ease;
+        }
+
+        .card__bio-text {
+            color: var(--submain-color);
+            font-size: 0.875rem;
+            line-height: 1.6;
+            transition: color 0.5s ease;
+        }
+
+        .btn-uiverse-primary {
+            background: linear-gradient(135deg, #0d6efd, #0d6efd) !important;
+            color: #ffffff !important;
+            border-radius: 50px !important;
+            border: none !important;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            box-shadow: 0 4px 15px rgba(13, 110, 253, 0.2) !important;
+        }
+
+        .btn-uiverse-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(13, 110, 253, 0.35) !important;
+        }
+
+        /* Custom Habilidades List Hover */
+        .list-group-item {
+            transition: all 0.3s ease;
+            border-color: rgba(0, 0, 0, 0.05) !important;
+            padding: 0.85rem 1.25rem !important;
+            background-color: transparent !important;
+        }
+
+        .list-group-item:hover {
+            padding-left: 1.5rem !important;
+            background-color: rgba(13, 110, 253, 0.04) !important;
+            color: #0d6efd !important;
+            font-weight: 500;
+        }
+
+        /* Custom Accordion Styles - Premium Obsidian Cards */
+        .custom-accordion .accordion-item {
+            border: 5px solid rgb(255, 255, 255) !important;
+            border-radius: 40px !important;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            background: linear-gradient(
+                0deg,
+                rgb(255, 255, 255) 0%,
+                rgb(244, 247, 251) 100%
+            ) !important;
+            box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px !important;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .custom-accordion .accordion-item:hover {
+            box-shadow: rgba(133, 189, 215, 0.95) 0px 35px 35px -15px !important;
+            transform: translateY(-2px);
+        }
+
+        .custom-accordion .accordion-item:has(.accordion-button:not(.collapsed)) {
+            border-left: 5px solid #0d6efd !important;
+            box-shadow: rgba(133, 189, 215, 0.95) 0px 35px 35px -15px, 0 10px 20px rgba(13, 110, 253, 0.05) !important;
+        }
+
+        .custom-accordion .accordion-button {
+            font-size: 1.15rem;
+            font-weight: 700 !important;
+            padding: 1.5rem;
+            color: #0f172a !important;
+            background-color: transparent !important;
+            box-shadow: none !important;
+            transition: all 0.3s ease;
+        }
+
+        .custom-accordion .accordion-button::after {
+            transition: transform 0.3s ease;
+        }
+
+        .custom-accordion .accordion-button:not(.collapsed) {
+            color: #0d6efd !important;
+            background-color: rgba(13, 110, 253, 0.01) !important;
+        }
+
+        /* Footer Customizado Premium */
+        .custom-footer {
+            background-color: #0f0e13;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #e2e8f0;
+            transition: all 0.5s ease;
+        }
+
+        #switch:checked ~ .content-wrapper .custom-footer {
+            background-color: #0c0b0f;
+            border-top: 1px solid rgba(137, 131, 247, 0.1);
+        }
+
+        .footer-brand {
+            font-size: 1.5rem;
+            color: #ffffff;
+            font-weight: 800;
+        }
+
+        .footer-brand .accent-dot {
+            color: #0d6efd;
+        }
+
+        #switch:checked ~ .content-wrapper .footer-brand .accent-dot {
+            color: #3b8bfa;
+        }
+
+        .footer-desc {
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        .footer-section-title {
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-link {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-link:hover {
+            color: #0d6efd;
+            transform: translateX(5px);
+        }
+
+        #switch:checked ~ .content-wrapper .footer-link:hover {
+            color: #3b8bfa;
+        }
+
+        .footer-link-active {
+            color: #0d6efd;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        #switch:checked ~ .content-wrapper .footer-link-active {
+            color: #3b8bfa;
+        }
+
+        .footer-divider {
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Social Buttons */
+        .social-icons-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-circle-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .social-circle-btn:hover {
+            color: #ffffff;
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4);
+        }
+
+        #switch:checked ~ .content-wrapper .social-circle-btn:hover {
+            background-color: #3b8bfa;
+            border-color: #3b8bfa;
+            box-shadow: 0 5px 15px rgba(137, 131, 247, 0.4);
+        }
+
+        /* Dark Mode Overrides for Home Page */
+        #switch:checked ~ .content-wrapper .profile-card-uiverse {
+            --main-color: #ffffff;
+            --submain-color: #94a3b8;
+            --bg-color: #26242E;
+            background: #26242E !important;
+            border: 5px solid #3d3a4a !important;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 30px -20px !important;
+        }
+
+        #switch:checked ~ .content-wrapper .card__avatar {
+            background: linear-gradient(135deg, #3b8bfa, #60a5fa);
+            box-shadow: 0 8px 25px rgba(137, 131, 247, 0.35);
+        }
+
+        #switch:checked ~ .content-wrapper .profile-img-style-uiverse {
+            border-color: rgba(38, 36, 46, 0.7);
+        }
+
+        #switch:checked ~ .content-wrapper .btn-uiverse-primary {
+            background: linear-gradient(135deg, #3b8bfa, #60a5fa) !important;
+            box-shadow: 0 4px 15px rgba(137, 131, 247, 0.3) !important;
+        }
+
+        #switch:checked ~ .content-wrapper .btn-uiverse-primary:hover {
+            box-shadow: 0 8px 20px rgba(137, 131, 247, 0.5) !important;
+        }
+
+        #switch:checked ~ .content-wrapper .list-group-item {
+            border-color: rgba(255, 255, 255, 0.05) !important;
+        }
+
+        #switch:checked ~ .content-wrapper .list-group-item:hover {
+            background-color: rgba(137, 131, 247, 0.08) !important;
+            color: #3b8bfa !important;
+        }
+
+        #switch:checked ~ .content-wrapper .custom-accordion .accordion-item {
+            background-color: #26242E !important;
+            border: 5px solid #3d3a4a !important;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 30px -20px !important;
+        }
+
+        #switch:checked ~ .content-wrapper .custom-accordion .accordion-item:hover {
+            border-color: rgba(137, 131, 247, 0.25) !important;
+        }
+
+        #switch:checked ~ .content-wrapper .custom-accordion .accordion-item:has(.accordion-button:not(.collapsed)) {
+            border-left: 5px solid #3b8bfa !important;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 30px -20px, 0 10px 20px rgba(137, 131, 247, 0.15) !important;
+        }
+
+        #switch:checked ~ .content-wrapper .custom-accordion .accordion-button {
+            color: #ffffff !important;
+        }
+
+        #switch:checked ~ .content-wrapper .custom-accordion .accordion-button:not(.collapsed) {
+            color: #3b8bfa !important;
+            background-color: rgba(137, 131, 247, 0.02) !important;
+        }
+
+        /* ==========================================================================
+           HERO PROFILE SECTION - NOVO DESIGN PROFISSIONAL
+           ========================================================================== */
+
+        .hero-section {
+            width: 100%;
+            padding: 2.5rem 0 0 0;
+        }
+
+        .hero-card {
+            position: relative;
+            border-radius: 40px;
+            overflow: hidden;
+            border: 5px solid rgba(255,255,255,0.12);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.25);
+            background: linear-gradient(135deg, #0d6efd, #0d6efd, #0a0818);
+        }
+
+        .hero-banner {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+        }
+
+        .hero-banner-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10,8,24,0) 0%, rgba(10,8,24,0.65) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 3rem 2rem 3rem;
+        }
+
+        /* Avatar */
+        .hero-avatar-wrapper {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-avatar-ring {
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.3) 100%);
+            padding: 4px;
+            animation: avatarPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes avatarPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.3); }
+            50% { box-shadow: 0 0 0 10px rgba(255,255,255,0); }
+        }
+
+        .hero-avatar-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255,255,255,0.95);
+            position: relative;
+            z-index: 2;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hero-card:hover .hero-avatar-img {
+            transform: scale(1.04);
+        }
+
+        .hero-status-dot {
+            position: absolute;
+            bottom: 6px;
+            right: 6px;
+            width: 20px;
+            height: 20px;
+            background: #22c55e;
+            border-radius: 50%;
+            border: 3px solid white;
+            z-index: 6;
+            animation: statusBlink 2s ease-in-out infinite;
+        }
+
+        @keyframes statusBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Nome e Título */
+        .hero-name {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0 0 0.35rem 0;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero-title {
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            font-weight: 500;
+            color: rgba(255,255,255,0.8);
+            margin: 0 0 0.75rem 0;
+        }
+
+        .hero-company-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50px;
+            padding: 0.35rem 1rem;
+            color: rgba(255,255,255,0.9);
+            font-size: 0.85rem;
+            margin-bottom: 1.25rem;
+        }
+
+        /* Info Pills */
+        .hero-info-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-info-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50px;
+            padding: 0.4rem 1rem;
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            font-size: 0.82rem;
+            transition: all 0.3s ease;
+        }
+
+        .hero-info-pill:hover {
+            background: rgba(255,255,255,0.2);
+            color: #ffffff;
+            border-color: rgba(255,255,255,0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Bio */
+        .hero-bio {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.75);
+            max-width: 580px;
+            line-height: 1.7;
+            margin: 0 0 1.5rem 0;
+        }
+
+        .hero-bio em {
+            color: rgba(255,255,255,0.95);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        /* Action Buttons */
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .btn-hero-primary {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255,255,255,0.95);
+            color: #0d6efd;
+            font-weight: 700;
+            padding: 0.65rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.92rem;
+            border: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .btn-hero-primary:hover {
+            background: #ffffff;
+            color: #0b5ed7;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        }
+
+        .btn-hero-secondary {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.9);
+            font-weight: 600;
+            padding: 0.65rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.92rem;
+            border: 1.5px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(8px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-hero-secondary:hover {
+            background: rgba(255,255,255,0.2);
+            color: #ffffff;
+            border-color: rgba(255,255,255,0.6);
+            transform: translateY(-3px);
+        }
+
+        /* Social Buttons Hero */
+        .hero-socials {
+            display: flex;
+            gap: 0.6rem;
+        }
+
+        .hero-social-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .hero-social-btn:hover {
+            background: rgba(255,255,255,0.25);
+            color: #ffffff;
+            border-color: rgba(255,255,255,0.5);
+            transform: translateY(-3px);
+        }
+
+        /* ==========================================================================
+           HOME - LAYOUT PRINCIPAL
+           ========================================================================== */
+        .home-container {
+            padding-top: 2rem;
+            padding-bottom: 3rem;
+        }
+
+        /* ---------- PROFILE BANNER ---------- */
+        .profile-banner {
+            position: relative;
+            border-radius: 28px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 20px 60px rgba(13,110,253,0.18);
+        }
+
+        .profile-banner-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #0d6efd 0%, #0d6efd 55%, #0a0818 100%);
+            z-index: 0;
+        }
+
+        .profile-banner-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle at 80% 40%, rgba(255,255,255,0.07) 0%, transparent 60%),
+                              radial-gradient(circle at 15% 60%, rgba(59,139,250,0.12) 0%, transparent 50%);
+        }
+
+        .profile-banner-inner {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            padding: 2.5rem 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 576px) {
+            .profile-banner-inner {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem 1.5rem;
+                gap: 1.5rem;
+            }
+            .profile-actions, .profile-socials { justify-content: center; }
+        }
+
+        /* Avatar */
+        .profile-avatar-col { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
+
+        .profile-avatar-ring {
+            width: 130px; height: 130px;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.4) 100%);
+            box-shadow: 0 0 0 0 rgba(255,255,255,0.4);
+            animation: avatarGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes avatarGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.3); }
+            50%       { box-shadow: 0 0 0 10px rgba(255,255,255,0); }
+        }
+
+        .profile-avatar-img {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255,255,255,0.9);
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .profile-banner:hover .profile-avatar-img { transform: scale(1.04); }
+
+        .profile-status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(34,197,94,0.15);
+            border: 1px solid rgba(34,197,94,0.4);
+            border-radius: 50px;
+            color: #86efac;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        .status-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: #22c55e;
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+        /* Info */
+        .profile-info-col { flex: 1; min-width: 220px; }
+
+        .profile-eyebrow {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.65);
+            margin: 0 0 0.2rem 0;
+            font-weight: 500;
+        }
+
+        .profile-name {
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            font-weight: 800;
+            color: #fff;
+            margin: 0 0 0.3rem 0;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.25);
+        }
+
+        .profile-role {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.75);
+            margin: 0 0 0.75rem 0;
+            font-weight: 500;
+        }
+
+        .profile-role-sep { color: rgba(255,255,255,0.45); margin: 0 0.25rem; }
+
+        .profile-bio {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.7;
+            margin: 0 0 1.25rem 0;
+            max-width: 520px;
+        }
+
+        .profile-bio strong { color: rgba(255,255,255,0.95); font-weight: 700; }
+        .profile-bio em { color: #A3DAFB; font-style: normal; font-weight: 600; }
+
+        /* Buttons */
+        .profile-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1rem; }
+
+        .btn-profile-primary {
+            display: inline-flex; align-items: center;
+            background: rgba(255,255,255,0.95);
+            color: #0d6efd;
+            font-weight: 700;
+            padding: 0.6rem 1.35rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.88rem;
+            border: none;
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .btn-profile-primary:hover {
+            background: #fff;
+            color: #0b5ed7;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn-profile-ghost {
+            display: inline-flex; align-items: center;
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.9);
+            font-weight: 600;
+            padding: 0.6rem 1.35rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.88rem;
+            border: 1.5px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(6px);
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .btn-profile-ghost:hover {
+            background: rgba(255,255,255,0.18);
+            color: #fff;
+            border-color: rgba(255,255,255,0.55);
+            transform: translateY(-2px);
+        }
+
+        /* Social */
+        .profile-socials { display: flex; gap: 0.5rem; }
+
+        .profile-social-btn {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.8);
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+        }
+
+        .profile-social-btn:hover {
+            background: rgba(255,255,255,0.25);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* ---------- STATS ---------- */
+        .home-stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) { .home-stats-row { grid-template-columns: repeat(2, 1fr); } }
+
+        .hstat-card {
+            border-radius: 20px;
+            padding: 1.4rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hstat-card:hover { transform: translateY(-5px); }
+
+        .hstat-card::before {
+            content: '';
+            position: absolute;
+            top: -30px; right: -30px;
+            width: 90px; height: 90px;
+            border-radius: 50%;
+            opacity: 0.12;
+            background: #fff;
+        }
+
+        .hstat-blue   { background: linear-gradient(135deg, #0d6efd, #3b8bfa); box-shadow: 0 8px 25px rgba(13,110,253,0.3); }
+        .hstat-violet { background: linear-gradient(135deg, #0d6efd, #3b8bfa); box-shadow: 0 8px 25px rgba(111,66,193,0.3); }
+        .hstat-teal   { background: linear-gradient(135deg, #0891b2, #22d3ee); box-shadow: 0 8px 25px rgba(8,145,178,0.3); }
+        .hstat-indigo { background: linear-gradient(135deg, #4338ca, #818cf8); box-shadow: 0 8px 25px rgba(67,56,202,0.3); }
+
+        .hstat-icon { font-size: 1.4rem; color: rgba(255,255,255,0.85); margin-bottom: 0.5rem; }
+        .hstat-value { font-size: 1.8rem; font-weight: 800; color: #fff; line-height: 1; margin-bottom: 0.25rem; }
+        .hstat-label { font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.75); text-transform: uppercase; letter-spacing: 0.8px; }
+
+        /* ---------- INFO CARDS GRID ---------- */
+        .home-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) { .home-info-grid { grid-template-columns: 1fr; } }
+
+        .info-card {
+            background: #fff;
+            border-radius: 22px;
+            padding: 1.75rem;
+            border: 1.5px solid rgba(0,0,0,0.06);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.5s ease, background-color 0.5s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+        }
+
+        #switch:checked ~ .content-wrapper .info-card {
+            background: #26242E;
+            border-color: #3d3a4a;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Card Header */
+        .info-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card-icon-wrap {
+            width: 46px; height: 46px;
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.15rem;
+            flex-shrink: 0;
+            color: #fff;
+        }
+
+        .ic-blue   { background: linear-gradient(135deg, #0d6efd, #3b8bfa); }
+        .ic-blue2 { background: linear-gradient(135deg, #0d6efd, #3b8bfa); }
+        .ic-teal   { background: linear-gradient(135deg, #0891b2, #22d3ee); }
+        .ic-indigo { background: linear-gradient(135deg, #4338ca, #818cf8); }
+
+        .info-card-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 0 0 0.15rem 0;
+            transition: color 0.5s ease;
+        }
+
+        #switch:checked ~ .content-wrapper .info-card-title { color: #fff; }
+
+        .info-card-badge {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #64748b;
+            letter-spacing: 0.4px;
+            transition: color 0.5s ease;
+        }
+
+        #switch:checked ~ .content-wrapper .info-card-badge { color: #94a3b8; }
+
+        .info-card-role {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 0 0 0.5rem 0;
+            transition: color 0.5s ease;
+        }
+
+        #switch:checked ~ .content-wrapper .info-card-role { color: #e2e8f0; }
+
+        .info-card-desc {
+            font-size: 0.875rem;
+            color: #64748b;
+            line-height: 1.65;
+            margin: 0 0 1rem 0;
+            transition: color 0.5s ease;
+        }
+
+        #switch:checked ~ .content-wrapper .info-card-desc { color: #94a3b8; }
+
+        /* Tags */
+        .info-card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+        .ic-tag {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.25rem 0.65rem;
+            border-radius: 8px;
+            background: rgba(13,110,253,0.08);
+            color: #0d6efd;
+            border: 1px solid rgba(13,110,253,0.15);
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        #switch:checked ~ .content-wrapper .ic-tag {
+            background: rgba(59,139,250,0.12);
+            color: #3b8bfa;
+            border-color: rgba(59,139,250,0.2);
+        }
+
+        .ic-tag-teal {
+            background: rgba(8,145,178,0.08);
+            color: #0891b2;
+            border-color: rgba(8,145,178,0.15);
+        }
+
+        #switch:checked ~ .content-wrapper .ic-tag-teal {
+            background: rgba(34,211,238,0.1);
+            color: #22d3ee;
+            border-color: rgba(34,211,238,0.2);
+        }
+
+        /* Skills */
+        .skills-grid { display: flex; flex-direction: column; gap: 0.75rem; }
+
+        .skill-item { display: grid; grid-template-columns: 1fr auto; align-items: center; row-gap: 4px; column-gap: 0.75rem; }
+
+        .skill-name {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #334155;
+            transition: color 0.5s ease;
+        }
+
+        #switch:checked ~ .content-wrapper .skill-name { color: #cbd5e1; }
+
+        .skill-bar {
+            grid-column: 1;
+            height: 6px;
+            background: rgba(0,0,0,0.07);
+            border-radius: 3px;
+            overflow: hidden;
+            transition: background 0.5s ease;
+        }
+
+        #switch:checked ~ .content-wrapper .skill-bar { background: rgba(255,255,255,0.07); }
+
+        .skill-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: linear-gradient(90deg, #0d6efd, #0d6efd);
+            transition: width 1s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .sf-blue2 { background: linear-gradient(90deg, #0d6efd, #60a5fa); }
+
+        .skill-level {
+            grid-column: 2;
+            grid-row: 1 / 3;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #0d6efd;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            transition: color 0.5s ease;
+        }
+
+        #switch:checked ~ .content-wrapper .skill-level { color: #3b8bfa; }
+
+        /* Soft Skills list */
+        .soft-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+
+        .soft-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.875rem;
+            color: #475569;
+            font-weight: 500;
+            transition: color 0.5s ease;
+        }
+
+        #switch:checked ~ .content-wrapper .soft-list li { color: #94a3b8; }
+
+        .soft-list li i {
+            color: #0d6efd;
+            font-size: 1rem;
+            flex-shrink: 0;
+            transition: color 0.5s ease;
+        }
+
+        #switch:checked ~ .content-wrapper .soft-list li i { color: #3b8bfa; }
+
+        /* ---------- STATS OLD (kept for compat) ---------- */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero-content {
+                padding: 2rem 1rem 2rem;
+            }
+        }
+
+        .stat-card {
+            border-radius: 40px;
+            border: 5px solid rgb(255, 255, 255);
+            background: linear-gradient(0deg, rgb(255,255,255) 0%, rgb(244,247,251) 100%);
+            box-shadow: rgba(133, 189, 215, 0.88) 0px 30px 30px -20px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-6px);
+            box-shadow: rgba(133, 189, 215, 0.95) 0px 35px 35px -15px;
+        }
+
+        .stat-icon {
+            font-size: 1.5rem;
+            color: #0d6efd;
+            margin-bottom: 0.5rem;
+            transition: color 0.5s ease;
+        }
+
+        .stat-value {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1;
+            margin-bottom: 0.3rem;
+            transition: color 0.5s ease;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.5s ease;
+        }
+
+        /* Dark Mode - Hero */
+        #switch:checked ~ .content-wrapper .hero-card {
+            border-color: rgba(137, 131, 247, 0.3);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+        }
+
+        /* Dark Mode - Stats */
+        #switch:checked ~ .content-wrapper .stat-card {
+            background: #26242E !important;
+            border: 5px solid #3d3a4a !important;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 30px -20px !important;
+        }
+        #switch:checked ~ .content-wrapper .stat-value {
+            color: #ffffff !important;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <input id="switch" type="checkbox" checked>
+
+    <div class="content-wrapper bg-light d-flex flex-column min-vh-100">
+
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top custom-navbar shadow">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="index.html">Eduardo | Currículo & Portfólio Digital<span class="accent-dot">.</span></a>
+                
+                <div class="d-flex align-items-center order-lg-last ms-3">
+                    <label for="switch" class="theme-toggle-label" title="Alternar tema (Claro / Escuro)">
+                        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <path d="M12 2v2"></path>
+                            <path d="M12 20v2"></path>
+                            <path d="M4.93 4.93l1.41 1.41"></path>
+                            <path d="M17.66 17.66l1.41 1.41"></path>
+                            <path d="M2 12h2"></path>
+                            <path d="M20 12h2"></path>
+                            <path d="M6.34 17.66l-1.41 1.41"></path>
+                            <path d="M19.07 4.93l-1.41 1.41"></path>
+                        </svg>
+                        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                        </svg>
+                    </label>
+                    
+                    <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" 
+                        aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+ 
+                <div class="collapse navbar-collapse" id="navMenu">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-semibold text-center">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="portfolio.html">Portfólio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contato.html">Contato</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+ 
+        <!-- ============================================================
+             CONTEÚDO PRINCIPAL DA HOME
+             ============================================================ -->
+        <div class="container home-container flex-grow-1">
+
+            <style>
+                /* Correções para o Accordion V2 (Info Card Mode) */
+                .custom-accordion-v2 .accordion-button:not(.collapsed) {
+                    background: transparent !important;
+                    box-shadow: none !important;
+                    color: inherit;
+                }
+                .custom-accordion-v2 .accordion-button::after {
+                    transition: all 0.3s ease;
+                }
+                #switch:checked ~ .content-wrapper .custom-accordion-v2 .accordion-button::after {
+                    filter: invert(1) brightness(1.5);
+                }
+                #switch:checked ~ .content-wrapper .custom-accordion-v2 .accordion-button:not(.collapsed)::after {
+                    filter: invert(60%) sepia(80%) saturate(300%) hue-rotate(200deg);
+                }
+                .custom-accordion-v2 .accordion-item.info-card {
+                    margin-bottom: 1.25rem !important;
+                }
+            </style>
+
+            <div class="row g-4">
+                <!-- COLUNA ESQUERDA: PERFIL -->
+                <div class="col-lg-5 col-xl-4">
+                    <div class="profile-card-uiverse position-sticky" style="top: 100px;">
+                        <div class="card__avatar">
+                            <img src="./assets/img/perfil_eduardo.png" class="profile-img-style-uiverse" alt="Eduardo">
+                        </div>
+                        <div class="card__title mt-4">Eduardo Floriano</div>
+                        <div class="card__subtitle">Full-Stack &amp; UI/UX</div>
+                        
+                        <div class="card__wrapper text-center px-4 pb-4 w-100">
+                            <p class="card__bio-text mt-3">
+                                Fundador da <strong>LunaStudio</strong> — crio interfaces modernas, sistemas robustos e experiências digitais.
+                            </p>
+                            <div class="d-flex flex-column gap-2 mt-4">
+                                <a href="contato.html" class="btn btn-uiverse-primary w-100 py-2">
+                                    <i class="bi bi-envelope-fill me-2"></i>Entrar em Contato
+                                </a>
+                                <a href="portfolio.html" class="btn btn-outline-secondary rounded-pill w-100 py-2">
+                                    <i class="bi bi-grid-3x3-gap-fill me-2"></i>Ver Portfólio
+                                </a>
+                            </div>
+                            <div class="social-icons-row mt-4 justify-content-center">
+                                <a href="https://github.com" target="_blank" class="social-circle-btn" title="GitHub"><i class="bi bi-github"></i></a>
+                                <a href="https://linkedin.com" target="_blank" class="social-circle-btn" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                                <a href="mailto:edufloriano11@gmail.com" class="social-circle-btn" title="Email"><i class="bi bi-envelope-fill"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COLUNA DIREITA: ACCORDION COM ESTILO INFO-CARD -->
+                <div class="col-lg-7 col-xl-8">
+                    <div class="accordion custom-accordion-v2" id="accordionHome">
+                        
+                        <!-- Experiência -->
+                        <div class="accordion-item info-card p-0" style="overflow: hidden; border-radius: 22px;">
+                            <h2 class="accordion-header" id="headingExperiencia">
+                                <button class="accordion-button info-card-header m-0 p-4 bg-transparent border-0 shadow-none d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExperiencia" aria-expanded="true" aria-controls="collapseExperiencia" style="width: 100%; text-align: left;">
+                                    <div class="flex-grow-1">
+                                        <h3 class="info-card-title mb-0">Experiência Profissional</h3>
+                                        <span class="info-card-badge">LunaStudio · 2026 — Presente</span>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="collapseExperiencia" class="accordion-collapse collapse show" aria-labelledby="headingExperiencia" data-bs-parent="#accordionHome">
+                                <div class="accordion-body px-4 pb-4 pt-0 border-top-0">
+                                    <h4 class="info-card-role mt-2">Fundador &amp; Desenvolvedor Full-Stack</h4>
+                                    <p class="info-card-desc">Liderança técnica, arquitetura de software e gestão em desenvolvimento web. Criação de plataformas e interfaces responsivas (Mobile-First) focadas em alta performance para os setores jurídico e de saúde.</p>
+                                    <div class="info-card-tags">
+                                        <span class="ic-tag">Full-Stack</span>
+                                        <span class="ic-tag">Mobile-First</span>
+                                        <span class="ic-tag">UI/UX</span>
+                                        <span class="ic-tag">Gestão</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Habilidades -->
+                        <div class="accordion-item info-card p-0" style="overflow: hidden; border-radius: 22px;">
+                            <h2 class="accordion-header" id="headingHabilidades">
+                                <button class="accordion-button collapsed info-card-header m-0 p-4 bg-transparent border-0 shadow-none d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHabilidades" aria-expanded="false" aria-controls="collapseHabilidades" style="width: 100%; text-align: left;">
+                                    <div class="flex-grow-1">
+                                        <h3 class="info-card-title mb-0">Habilidades Técnicas</h3>
+                                        <span class="info-card-badge">Stack Principal</span>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="collapseHabilidades" class="accordion-collapse collapse" aria-labelledby="headingHabilidades" data-bs-parent="#accordionHome">
+                                <div class="accordion-body px-4 pb-4 pt-0 border-top-0">
+                                    <div class="skills-grid mt-2">
+                                        <div class="skill-item">
+                                            <span class="skill-name">HTML5 &amp; CSS3</span>
+                                            <div class="skill-bar"><div class="skill-fill sf-blue2" style="width:70%"></div></div>
+                                            <span class="skill-level">Intermediário</span>
+                                        </div>
+                                        <div class="skill-item">
+                                            <span class="skill-name">Bootstrap</span>
+                                            <div class="skill-bar"><div class="skill-fill sf-blue2" style="width:70%"></div></div>
+                                            <span class="skill-level">Intermediário</span>
+                                        </div>
+                                        <div class="skill-item">
+                                            <span class="skill-name">Node.js</span>
+                                            <div class="skill-bar"><div class="skill-fill sf-blue2" style="width:70%"></div></div>
+                                            <span class="skill-level">Intermediário</span>
+                                        </div>
+                                        <div class="skill-item">
+                                            <span class="skill-name">Git &amp; GitHub</span>
+                                            <div class="skill-bar"><div class="skill-fill sf-blue2" style="width:70%"></div></div>
+                                            <span class="skill-level">Intermediário</span>
+                                        </div>
+                                        <div class="skill-item">
+                                            <span class="skill-name">Vercel &amp; Render</span>
+                                            <div class="skill-bar"><div class="skill-fill sf-blue2" style="width:70%"></div></div>
+                                            <span class="skill-level">Intermediário</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Formação -->
+                        <div class="accordion-item info-card p-0" style="overflow: hidden; border-radius: 22px;">
+                            <h2 class="accordion-header" id="headingFormacao">
+                                <button class="accordion-button collapsed info-card-header m-0 p-4 bg-transparent border-0 shadow-none d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFormacao" aria-expanded="false" aria-controls="collapseFormacao" style="width: 100%; text-align: left;">
+                                    <div class="flex-grow-1">
+                                        <h3 class="info-card-title mb-0">Formação Acadêmica</h3>
+                                        <span class="info-card-badge">Formação e Cursos</span>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="collapseFormacao" class="accordion-collapse collapse" aria-labelledby="headingFormacao" data-bs-parent="#accordionHome">
+                                <div class="accordion-body px-4 pb-4 pt-0 border-top-0">
+                                    <h4 class="info-card-role mt-2">Desenvolvimento de Sistemas / Tecnologia</h4>
+                                    <ul class="info-card-desc ps-3">
+                                        <li class="mb-2"><strong>Ensino Médio</strong> (Cursando)</li>
+                                        <li class="mb-2"><strong>Curso Técnico em TI – SENAI</strong> (Onde desenvolvo projetos práticos de tecnologia)</li>
+                                        <li><strong>Especializações em Andamento</strong> (Alura – com foco em Python e Python para Dados, além de novos cursos sendo realizados)</li>
+                                    </ul>
+                                    <div class="info-card-tags mt-3">
+                                        <span class="ic-tag ic-tag-teal">Ensino Médio</span>
+                                        <span class="ic-tag ic-tag-teal">Técnico em TI</span>
+                                        <span class="ic-tag ic-tag-teal">Python</span>
+                                        <span class="ic-tag ic-tag-teal">Ciência de Dados</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Soft Skills -->
+                        <div class="accordion-item info-card p-0 mb-0" style="overflow: hidden; border-radius: 22px;">
+                            <h2 class="accordion-header" id="headingSoftSkills">
+                                <button class="accordion-button collapsed info-card-header m-0 p-4 bg-transparent border-0 shadow-none d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSoftSkills" aria-expanded="false" aria-controls="collapseSoftSkills" style="width: 100%; text-align: left;">
+                                    <div class="flex-grow-1">
+                                        <h3 class="info-card-title mb-0">Soft Skills &amp; Diferenciais</h3>
+                                        <span class="info-card-badge">O que me destaca</span>
+                                    </div>
+                                </button>
+                            </h2>
+                            <div id="collapseSoftSkills" class="accordion-collapse collapse" aria-labelledby="headingSoftSkills" data-bs-parent="#accordionHome">
+                                <div class="accordion-body px-4 pb-4 pt-0 border-top-0">
+                                    <ul class="soft-list mt-2">
+                                        <li><i class="bi bi-check2-circle"></i>Empreendedorismo e Gestão de Projetos</li>
+                                        <li><i class="bi bi-check2-circle"></i>Gamificação aplicada a Interfaces (UI/UX)</li>
+                                        <li><i class="bi bi-check2-circle"></i>Design Limpo e Premium (Modern Clean UI)</li>
+                                        <li><i class="bi bi-check2-circle"></i>Resolução de Problemas Complexos</li>
+                                        <li><i class="bi bi-check2-circle"></i>Comunicação e Alinhamento com Clientes</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /container -->
+
+        <footer class="custom-footer pt-5 pb-4 mt-auto">
+            <div class="container">
+                <div class="row g-4 justify-content-between">
+                    <div class="col-12 col-md-4 text-center text-md-start">
+                        <a href="index.html" class="footer-brand text-decoration-none fw-bold mb-3 d-inline-block">Eduardo | Currículo & Portfólio Digital<span class="accent-dot">.</span></a>
+                        <p class="footer-desc small">Desenvolvedor Full-Stack & Designer UI/UX. Fundador da LunaStudio, criando soluções inovadoras de alto impacto visual e tecnológico.</p>
+                        <div class="social-icons-row mt-3 justify-content-center justify-content-md-start">
+                            <a href="https://github.com" target="_blank" class="social-circle-btn" title="GitHub"><i class="bi bi-github"></i></a>
+                            <a href="https://linkedin.com" target="_blank" class="social-circle-btn" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                            <a href="mailto:edufloriano11@gmail.com" class="social-circle-btn" title="Email"><i class="bi bi-envelope-fill"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 text-center text-md-start">
+                        <h6 class="fw-bold text-uppercase footer-section-title mb-3">Navegação</h6>
+                        <ul class="list-unstyled footer-links">
+                            <li><a href="index.html" class="footer-link">Home</a></li>
+                            <li><a href="portfolio.html" class="footer-link">Portfólio</a></li>
+                            <li><a href="contato.html" class="footer-link">Contato & Feedback</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4 text-center text-md-start">
+                        <h6 class="fw-bold text-uppercase footer-section-title mb-3">Contato & Info</h6>
+                        <p class="small text-secondary mb-2"><i class="bi bi-envelope-fill me-2 text-primary"></i>edufloriano11@gmail.com</p>
+                        <p class="small text-secondary mb-2"><i class="bi bi-globe me-2 text-primary"></i><a href="https://lunastudio.com.br" target="_blank" class="footer-link-active">www.lunastudio.com.br</a></p>
+
+                    </div>
+                </div>
+                <hr class="footer-divider my-4">
+                <div class="row align-items-center justify-content-between text-center text-md-start">
+                    <div class="col-12 col-md-6 mb-2 mb-md-0">
+                        <p class="mb-0 small text-secondary">&copy; 2026 LunaStudio. Todos os direitos reservados.</p>
+                    </div>
+                    <div class="col-12 col-md-6 text-center text-md-end">
+                        <small class="text-muted">Projetado com Bootstrap 5 &amp; CSS Customizado por Eduardo.</small>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function() {
+  var sw = document.getElementById('switch');
+  // Se não há valor salvo, default é dark (checked)
+  var saved = localStorage.getItem('theme');
+  if (saved === 'light') {
+    sw.checked = false;
+  } else {
+    sw.checked = true;
+    localStorage.setItem('theme', 'dark');
+  }
+  sw.addEventListener('change', function() {
+    localStorage.setItem('theme', sw.checked ? 'dark' : 'light');
+  });
+})();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Profissional - Meus Projetos</title>
+    <meta name="description" content="Galeria de projetos de Eduardo Floriano — sistemas corporativos e soluções de software entregues pela LunaStudio.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        /* ============================================================
+           BASE
+           ============================================================ */
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body, .content-wrapper, h1, h2, h3, h4, h5, p, span, a, button, label, .accordion-button, .form-control, .form-select {
+            font-family: 'Outfit', sans-serif !important;
+        }
+
+        [type="checkbox"] { display: none; }
+
+        /* ==========================================================================
+           CONFIGURAÇÃO DA TRANSIÇÃO DE CORES (LIGHT / DARK MODE GLOBAL)
+           ========================================================================== */
+        body, .card, footer, nav, label, .list-group-item, h3, h5, .accordion-button, .accordion-item, .offcanvas, .phone, .time, .battery, .network, .toggle-label, .toggle-btn, .crescent, .circle, .dark, .light, .table, .modal-content, .form-control, .form-select, .theme-toggle-label, .sun-icon, .moon-icon {
+            transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        /* Variáveis de cores para o tema escuro geral */
+        #switch:checked ~ .content-wrapper {
+            background-color: #1e1c24 !important;
+            color: #f7f8f7 !important;
+        }
+        #switch:checked ~ .content-wrapper .card,
+        #switch:checked ~ .content-wrapper .accordion-item,
+        #switch:checked ~ .content-wrapper .accordion-button,
+        #switch:checked ~ .content-wrapper .list-group-item,
+        #switch:checked ~ .content-wrapper .modal-content {
+            background-color: #26242E !important;
+            color: #ffffff !important;
+            border-color: #3d3a4a !important;
+        }
+        #switch:checked ~ .content-wrapper .accordion-button:not(.collapsed) {
+            background-color: rgba(137, 131, 247, 0.1) !important;
+            color: #3b8bfa !important;
+        }
+        #switch:checked ~ .content-wrapper .accordion-button {
+            color: #ffffff !important;
+        }
+        #switch:checked ~ .content-wrapper .text-muted,
+        #switch:checked ~ .content-wrapper .text-secondary,
+        #switch:checked ~ .content-wrapper .form-label {
+            color: #b3b0c2 !important;
+        }
+        #switch:checked ~ .content-wrapper .text-dark {
+            color: #ffffff !important;
+        }
+        #switch:checked ~ .content-wrapper .bg-secondary-subtle {
+            background-color: #34323D !important;
+        }
+        #switch:checked ~ .content-wrapper .offcanvas {
+            background-color: #26242E !important;
+            color: #ffffff !important;
+        }
+        #switch:checked ~ .content-wrapper .form-control,
+        #switch:checked ~ .content-wrapper .form-select {
+            background-color: #34323D !important;
+            color: #ffffff !important;
+            border-color: #4a4758 !important;
+        }
+
+        /* ============================================================
+           NAVBAR
+           ============================================================ */
+        .content-wrapper { padding-top: 80px; }
+
+        .custom-navbar {
+            position: fixed !important;
+            top: 0; left: 0; width: 100%;
+            background-color: rgba(255,255,255,0.82) !important;
+            backdrop-filter: blur(18px) saturate(200%);
+            -webkit-backdrop-filter: blur(18px) saturate(200%);
+            border-bottom: 1px solid rgba(0,0,0,0.07) !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            transition: all 0.5s ease;
+            z-index: 1030;
+        }
+
+        #switch:checked ~ .content-wrapper .custom-navbar {
+            background-color: rgba(30, 28, 36, 0.8) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        /* Ajuste do botão menu hambúrguer para ficar visível no modo claro */
+        .navbar-toggler {
+            filter: invert(1);
+        }
+        #switch:checked ~ .content-wrapper .navbar-toggler {
+            filter: none;
+        }
+
+        .navbar-brand {
+            font-weight: 800 !important;
+            letter-spacing: 0.5px;
+            color: #0f172a !important;
+            transition: all 0.5s ease;
+        }
+
+        #switch:checked ~ .content-wrapper .navbar-brand {
+            color: #ffffff !important;
+        }
+        
+        .navbar-brand .accent-dot {
+            color: #0d6efd;
+        }
+
+        #switch:checked ~ .content-wrapper .navbar-brand .accent-dot {
+            color: #3b8bfa;
+        }
+
+        .nav-link {
+            color: #4a4a5a !important;
+            font-weight: 600;
+            padding: 0.5rem 1.2rem !important;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 50%;
+            width: 0; height: 2px;
+            background: linear-gradient(135deg, #0d6efd, #0d6efd);
+            transition: width 0.3s ease, left 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after { width: 70%; left: 15%; }
+        .nav-link:hover { color: #0d6efd !important; }
+        .nav-link.active { color: #0d6efd !important; }
+
+        #switch:checked ~ .content-wrapper .nav-link { color: #b8b8cc !important; }
+        #switch:checked ~ .content-wrapper .nav-link::after { background: linear-gradient(135deg, #3b8bfa, #A3DAFB); }
+        #switch:checked ~ .content-wrapper .nav-link:hover { color: #3b8bfa !important; }
+        #switch:checked ~ .content-wrapper .nav-link.active { color: #3b8bfa !important; }
+
+        /* Theme toggle */
+        .theme-toggle-label {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 40px; height: 40px; border-radius: 50%; cursor: pointer;
+            background-color: rgba(13,110,253,0.05);
+            border: 1px solid rgba(13,110,253,0.15);
+            color: #0d6efd; position: relative; overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+        .theme-toggle-label:hover { background-color: rgba(13,110,253,0.1); transform: scale(1.05); }
+        .theme-toggle-label .sun-icon {
+            position: absolute; transform: rotate(0deg) scale(1); opacity: 1;
+            transition: transform 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease;
+        }
+        .theme-toggle-label .moon-icon {
+            position: absolute; transform: rotate(90deg) scale(0); opacity: 0;
+            transition: transform 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease;
+        }
+        #switch:checked ~ .content-wrapper .theme-toggle-label {
+            background-color: rgba(59,139,250,0.1);
+            border: 1px solid rgba(59,139,250,0.25); color: #3b8bfa;
+        }
+        #switch:checked ~ .content-wrapper .theme-toggle-label .sun-icon { transform: rotate(-90deg) scale(0); opacity: 0; }
+        #switch:checked ~ .content-wrapper .theme-toggle-label .moon-icon { transform: rotate(0deg) scale(1); opacity: 1; }
+
+        /* ============================================================
+           PORTFOLIO SECTION
+           ============================================================ */
+        .portfolio-section {
+            padding: 3rem 0 4rem;
+            min-height: calc(100vh - 80px);
+        }
+
+        /* ---- HEADER ROW (título à esq + contador à dir) ---- */
+        .portfolio-header-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding-bottom: 1.1rem;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            transition: border-color 0.5s ease;
+        }
+
+        #switch:checked ~ .content-wrapper .portfolio-header-row {
+            border-color: rgba(255,255,255,0.08);
+        }
+
+        .portfolio-header-title {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 700;
+            color: #1a1a2e;
+            letter-spacing: -0.5px;
+            margin: 0;
+            line-height: 1;
+            transition: color 0.5s ease;
+        }
+
+        #switch:checked ~ .content-wrapper .portfolio-header-title { color: #f0f0f5; }
+
+        .portfolio-header-counter {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-weight: 500;
+            color: #1a1a2e;
+            letter-spacing: 1px;
+            line-height: 1;
+            transition: color 0.5s ease;
+        }
+
+        .portfolio-header-counter .counter-total {
+            color: #aaaabc;
+            font-weight: 400;
+        }
+
+        #switch:checked ~ .content-wrapper .portfolio-header-counter { color: #f0f0f5; }
+        #switch:checked ~ .content-wrapper .portfolio-header-counter .counter-total { color: #5a5a72; }
+
+        /* ---- BOOTSTRAP CAROUSEL STYLE ---- */
+        .custom-carousel .carousel-item img {
+            width: 100%;
+            height: 650px;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 12px;
+            transition: object-position 8s ease-in-out;
+        }
+
+        /* Efeito de Scroll na Imagem ao passar o mouse */
+        .custom-carousel .carousel-item:hover img {
+            object-position: bottom center;
+        }
+
+        /* Container de rolagem manual para imagens dentro dos modais */
+        .modal-scroll-container {
+            width: 100%;
+            height: 400px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Estilo para os cards de curso */
+        .custom-course-card {
+            background-color: rgba(255, 255, 255, 0.8) !important;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0,0,0,0.05) !important;
+        }
+        .custom-course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+        }
+        #switch:checked ~ .content-wrapper .custom-course-card {
+            background-color: #26242E !important;
+            border-color: rgba(255,255,255,0.05) !important;
+        }
+        #switch:checked ~ .content-wrapper .custom-course-card .card-title {
+            color: #f0f0f5 !important;
+        }
+        #switch:checked ~ .content-wrapper .custom-course-card .card-text {
+            color: #b8b8cc !important;
+        }
+
+        /* Personalizar a barra de rolagem (opcional para ficar bonito) */
+        .modal-scroll-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        .modal-scroll-container::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+        }
+        .modal-scroll-container::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        #switch:checked ~ .modal .modal-scroll-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        #switch:checked ~ .modal .modal-scroll-container::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* A imagem ocupará a largura inteira e a altura ficará natural para permitir o scroll */
+        .modal-scroll-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .custom-carousel .carousel-caption {
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 40px;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%);
+            border-radius: 12px;
+        }
+
+        .custom-carousel .carousel-caption h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+        }
+
+        /* Modals Dark Mode Adjustment */
+        #switch:checked ~ .modal .modal-content {
+            background-color: #1e1c2a;
+            color: #f0f0f5;
+        }
+        #switch:checked ~ .modal .modal-header {
+            border-bottom-color: rgba(255,255,255,0.1);
+        }
+        #switch:checked ~ .modal .modal-footer {
+            border-top-color: rgba(255,255,255,0.1);
+        }
+        #switch:checked ~ .modal .btn-close {
+            filter: invert(1) grayscale(100%) brightness(200%);
+        }
+        #switch:checked ~ .modal .text-secondary {
+            color: #a5a5a5 !important;
+        }
+    </style>
+</head>
+ 
+<body>
+
+    <input id="switch" type="checkbox" checked>
+
+    <div class="content-wrapper bg-light d-flex flex-column min-vh-100">
+
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top custom-navbar shadow">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="index.html">Eduardo | Currículo & Portfólio Digital<span class="accent-dot">.</span></a>
+                
+                <div class="d-flex align-items-center order-lg-last ms-3">
+                    <label for="switch" class="theme-toggle-label" title="Alternar tema (Claro / Escuro)">
+                        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <path d="M12 2v2"></path>
+                            <path d="M12 20v2"></path>
+                            <path d="M4.93 4.93l1.41 1.41"></path>
+                            <path d="M17.66 17.66l1.41 1.41"></path>
+                            <path d="M2 12h2"></path>
+                            <path d="M20 12h2"></path>
+                            <path d="M6.34 17.66l-1.41 1.41"></path>
+                            <path d="M19.07 4.93l-1.41 1.41"></path>
+                        </svg>
+                        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                        </svg>
+                    </label>
+                    
+                    <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" 
+                        aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+ 
+                <div class="collapse navbar-collapse" id="navMenu">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-semibold text-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="portfolio.html">Portfólio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contato.html">Contato</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- ================================================================
+             PORTFOLIO SECTION
+             ================================================================ -->
+        <section class="portfolio-section flex-grow-1">
+            <div class="container">
+
+                <!-- HEADER ROW: título + contador -->
+                <div class="portfolio-header-row">
+                    <h1 class="portfolio-header-title">Galeria de Projetos</h1>
+                    <span class="portfolio-header-counter">
+                        <span id="pfCounterCurrent">01</span><span class="counter-total">/05</span>
+                    </span>
+                </div>
+
+                <!-- BOOTSTRAP CAROUSEL -->
+                <div id="meuCarrossel" class="carousel slide custom-carousel shadow-lg rounded" data-bs-ride="carousel">
+                    <div class="carousel-inner rounded">
+                        
+                        <!-- CARD 1: LunaStudio -->
+                        <div class="carousel-item active">
+                            <img src="./assets/img/lunastudio.png" alt="LunaStudio">
+                            <div class="carousel-caption">
+                                <h3 class="fw-bold text-white mb-3">LunaStudio</h3>
+                                <button class="btn btn-primary shadow rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#m1">Ver Detalhes</button>
+                            </div>
+                        </div>
+
+                        <!-- CARD 2: Quitanda do Tomate Crú -->
+                        <div class="carousel-item">
+                            <img src="./assets/img/kitanda (1).png" alt="Quitanda do Tomate Crú">
+                            <div class="carousel-caption">
+                                <h3 class="fw-bold text-white mb-3">Quitanda do Tomate Crú</h3>
+                                <button class="btn btn-primary shadow rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#m_kitanda">Ver Detalhes</button>
+                            </div>
+                        </div>
+
+                        <!-- CARD 3: To do List - Kanban -->
+                        <div class="carousel-item">
+                            <img src="./assets/img/kanban (1).png" alt="To do List - Kanban">
+                            <div class="carousel-caption">
+                                <h3 class="fw-bold text-white mb-3">To do List - Kanban</h3>
+                                <button class="btn btn-primary shadow rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#m_kanban">Ver Detalhes</button>
+                            </div>
+                        </div>
+
+                        <!-- CARD 4: Mini App DOM -->
+                        <div class="carousel-item">
+                            <img src="./assets/img/mini_app.png" alt="Mini App DOM">
+                            <div class="carousel-caption">
+                                <h3 class="fw-bold text-white mb-3">Mini App DOM</h3>
+                                <button class="btn btn-primary shadow rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#m_mini_app">Ver Detalhes</button>
+                            </div>
+                        </div>
+
+                        <!-- CARD 5: AeroCuesta Táxi Aéreo -->
+                        <div class="carousel-item">
+                            <img src="./assets/img/projetofinal (1).png" alt="AeroCuesta Táxi Aéreo">
+                            <div class="carousel-caption">
+                                <h3 class="fw-bold text-white mb-3">AeroCuesta Táxi Aéreo</h3>
+                                <button class="btn btn-primary shadow rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#m_aerocuesta">Ver Detalhes</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#meuCarrossel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#meuCarrossel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Próximo</span>
+                    </button>
+                </div><!-- /portfolio-swiper-wrap -->
+
+            </div><!-- /container -->
+        </section>
+
+                <!-- ================================================================
+             CURSOS E CERTIFICAÇÕES SECTION
+             ================================================================ -->
+        <section class="portfolio-section py-5" style="min-height: auto;">
+            <div class="container">
+                <div class="portfolio-header-row mb-5 text-center">
+                    <h2 class="portfolio-header-title w-100">Cursos e Certificações</h2>
+                </div>
+
+                <!-- ALURA -->
+                <h4 class="fw-bold mb-4 text-primary"><i class="bi bi-code-square me-2"></i>Especializações Técnicas - Alura</h4>
+                <div class="row g-4 mb-5">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0 custom-course-card" style="border-radius: 20px; transition: transform 0.3s ease;">
+                            <div class="card-body p-4 d-flex flex-column">
+                                <h5 class="card-title fw-bold mb-3">Python para Dados: trabalhando com funções, estruturas de dados e exceções</h5>
+                                <h6 class="card-subtitle mb-auto text-primary fw-semibold" style="">Alura</h6>
+                                <button class="btn btn-outline-primary rounded-pill px-4 mt-4" data-bs-toggle="modal" data-bs-target="#modalCurso1">Ver Mais</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0 custom-course-card" style="border-radius: 20px; transition: transform 0.3s ease;">
+                            <div class="card-body p-4 d-flex flex-column">
+                                <h5 class="card-title fw-bold mb-3">Python para Dados: primeiros passos</h5>
+                                <h6 class="card-subtitle mb-auto text-primary fw-semibold" style="">Alura</h6>
+                                <button class="btn btn-outline-primary rounded-pill px-4 mt-4" data-bs-toggle="modal" data-bs-target="#modalCurso2">Ver Mais</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0 custom-course-card" style="border-radius: 20px; transition: transform 0.3s ease;">
+                            <div class="card-body p-4 d-flex flex-column">
+                                <h5 class="card-title fw-bold mb-3">Git e GitHub: compartilhando e colaborando em projetos</h5>
+                                <h6 class="card-subtitle mb-auto text-primary fw-semibold" style="">Alura</h6>
+                                <button class="btn btn-outline-primary rounded-pill px-4 mt-4" data-bs-toggle="modal" data-bs-target="#modalCurso3">Ver Mais</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0 custom-course-card" style="border-radius: 20px; transition: transform 0.3s ease;">
+                            <div class="card-body p-4 d-flex flex-column">
+                                <h5 class="card-title fw-bold mb-3">Pensamento computacional: fundamentos da computação e lógica de programação</h5>
+                                <h6 class="card-subtitle mb-auto text-primary fw-semibold" style="">Alura</h6>
+                                <button class="btn btn-outline-primary rounded-pill px-4 mt-4" data-bs-toggle="modal" data-bs-target="#modalCurso4">Ver Mais</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0 custom-course-card" style="border-radius: 20px; transition: transform 0.3s ease;">
+                            <div class="card-body p-4 d-flex flex-column">
+                                <h5 class="card-title fw-bold mb-3">Inteligência emocional: práticas para o cotidiano</h5>
+                                <h6 class="card-subtitle mb-auto text-primary fw-semibold" style="">Alura</h6>
+                                <button class="btn btn-outline-primary rounded-pill px-4 mt-4" data-bs-toggle="modal" data-bs-target="#modalCurso5">Ver Mais</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0 custom-course-card" style="border-radius: 20px; transition: transform 0.3s ease;">
+                            <div class="card-body p-4 d-flex flex-column">
+                                <h5 class="card-title fw-bold mb-3">Começando em Programação: carreira e primeiros passos</h5>
+                                <h6 class="card-subtitle mb-auto text-primary fw-semibold" style="">Alura</h6>
+                                <button class="btn btn-outline-primary rounded-pill px-4 mt-4" data-bs-toggle="modal" data-bs-target="#modalCurso6">Ver Mais</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SENAI -->
+                <h4 class="fw-bold mb-4" style="color: #6f42c1;"><i class="bi bi-briefcase me-2"></i>Competências Transversais - SENAI</h4>
+                <div class="row g-4">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0 custom-course-card" style="border-radius: 20px; transition: transform 0.3s ease;">
+                            <div class="card-body p-4 d-flex flex-column">
+                                <h5 class="card-title fw-bold mb-3">Competência Transversal - Tecnologia da Informação e Comunicação</h5>
+                                <h6 class="card-subtitle mb-auto  fw-semibold" style="color: #6f42c1;">SENAI</h6>
+                                <button class="btn btn-outline-secondary rounded-pill px-4 mt-4" data-bs-toggle="modal" data-bs-target="#modalCurso7">Ver Mais</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0 custom-course-card" style="border-radius: 20px; transition: transform 0.3s ease;">
+                            <div class="card-body p-4 d-flex flex-column">
+                                <h5 class="card-title fw-bold mb-3">Por dentro da Segurança Cibernética</h5>
+                                <h6 class="card-subtitle mb-auto  fw-semibold" style="color: #6f42c1;">SENAI</h6>
+                                <button class="btn btn-outline-secondary rounded-pill px-4 mt-4" data-bs-toggle="modal" data-bs-target="#modalCurso8">Ver Mais</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0 custom-course-card" style="border-radius: 20px; transition: transform 0.3s ease;">
+                            <div class="card-body p-4 d-flex flex-column">
+                                <h5 class="card-title fw-bold mb-3">FLUÊNCIA - Fundamentos da Inteligência Artificial</h5>
+                                <h6 class="card-subtitle mb-auto  fw-semibold" style="color: #6f42c1;">SENAI</h6>
+                                <button class="btn btn-outline-secondary rounded-pill px-4 mt-4" data-bs-toggle="modal" data-bs-target="#modalCurso9">Ver Mais</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0 custom-course-card" style="border-radius: 20px; transition: transform 0.3s ease;">
+                            <div class="card-body p-4 d-flex flex-column">
+                                <h5 class="card-title fw-bold mb-3">Ética na Inteligência Artificial</h5>
+                                <h6 class="card-subtitle mb-auto  fw-semibold" style="color: #6f42c1;">SENAI</h6>
+                                <button class="btn btn-outline-secondary rounded-pill px-4 mt-4" data-bs-toggle="modal" data-bs-target="#modalCurso10">Ver Mais</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0 custom-course-card" style="border-radius: 20px; transition: transform 0.3s ease;">
+                            <div class="card-body p-4 d-flex flex-column">
+                                <h5 class="card-title fw-bold mb-3">Excel Básico</h5>
+                                <h6 class="card-subtitle mb-auto  fw-semibold" style="color: #6f42c1;">SENAI</h6>
+                                <button class="btn btn-outline-secondary rounded-pill px-4 mt-4" data-bs-toggle="modal" data-bs-target="#modalCurso11">Ver Mais</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0 custom-course-card" style="border-radius: 20px; transition: transform 0.3s ease;">
+                            <div class="card-body p-4 d-flex flex-column">
+                                <h5 class="card-title fw-bold mb-3">Desvendando a Descarbonização</h5>
+                                <h6 class="card-subtitle mb-auto  fw-semibold" style="color: #6f42c1;">SENAI</h6>
+                                <button class="btn btn-outline-secondary rounded-pill px-4 mt-4" data-bs-toggle="modal" data-bs-target="#modalCurso12">Ver Mais</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0 custom-course-card" style="border-radius: 20px; transition: transform 0.3s ease;">
+                            <div class="card-body p-4 d-flex flex-column">
+                                <h5 class="card-title fw-bold mb-3">Competência Transversal - Segurança no Trabalho</h5>
+                                <h6 class="card-subtitle mb-auto  fw-semibold" style="color: #6f42c1;">SENAI</h6>
+                                <button class="btn btn-outline-secondary rounded-pill px-4 mt-4" data-bs-toggle="modal" data-bs-target="#modalCurso13">Ver Mais</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div><!-- /content-wrapper -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    (function () {
+        /* Theme */
+        var sw = document.getElementById('switch');
+        var saved = localStorage.getItem('theme');
+        sw.checked = (saved !== 'light');
+        if (sw.checked) localStorage.setItem('theme', 'dark');
+        sw.addEventListener('change', function () {
+            localStorage.setItem('theme', sw.checked ? 'dark' : 'light');
+        });
+        
+        /* Atualizar contador nativo do Bootstrap Carousel */
+        var myCarousel = document.getElementById('meuCarrossel')
+        var counterEl = document.getElementById('pfCounterCurrent');
+        if (myCarousel && counterEl) {
+            myCarousel.addEventListener('slide.bs.carousel', function (e) {
+                counterEl.textContent = String(e.to + 1).padStart(2, '0');
+            })
+        }
+    })();
+    </script>
+
+    <!-- Modais -->
+    <div class="modal fade" id="m1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">LunaStudio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-scroll-container shadow-sm">
+                        <img src="./assets/img/lunastudio.png" class="modal-scroll-img" alt="LunaStudio">
+                    </div>
+
+                    <div class="mt-3 mb-3">
+                        <h6 class="fw-bold mb-2">Tecnologias Utilizadas:</h6>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-primary text-white"><i class="bi bi-filetype-html"></i> HTML5</span>
+                            <span class="badge bg-info text-white"><i class="bi bi-filetype-css"></i> CSS3</span>
+                            <span class="badge" style="background-color: #6f42c1; color: white;"><i class="bi bi-bootstrap"></i> Bootstrap</span>
+                            <span class="badge bg-warning text-dark"><i class="bi bi-filetype-js"></i> JavaScript</span>
+                        </div>
+                    </div>
+
+                    <p class="mb-1 fw-semibold text-primary">Estúdio Digital · Web Development · 2026</p>
+                    <p class="text-secondary">Liderança técnica e arquitetura para soluções web modernas, com foco em design premium e alta performance.</p>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <a href="https://lunastudio.com.br" target="_blank" class="btn btn-primary">Acessar Site</a>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Quitanda do Tomate Crú -->
+    <div class="modal fade" id="m_kitanda">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Quitanda do Tomate Crú</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-scroll-container shadow-sm">
+                        <img src="./assets/img/kitanda (1).png" class="modal-scroll-img" alt="Quitanda do Tomate Crú - Tela 1">
+                        <img src="./assets/img/kitanda (2).png" class="modal-scroll-img" alt="Quitanda do Tomate Crú - Tela 2">
+                        <img src="./assets/img/kitanda (3).png" class="modal-scroll-img" alt="Quitanda do Tomate Crú - Tela 3">
+                        <img src="./assets/img/kitanda (4).png" class="modal-scroll-img" alt="Quitanda do Tomate Crú - Tela 4">
+                    </div>
+
+                    <div class="mt-3 mb-3">
+                        <h6 class="fw-bold mb-2">Tecnologias Utilizadas:</h6>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-primary text-white"><i class="bi bi-filetype-html"></i> HTML5</span>
+                            <span class="badge bg-info text-white"><i class="bi bi-filetype-css"></i> CSS3</span>
+                            <span class="badge" style="background-color: #6f42c1; color: white;"><i class="bi bi-bootstrap"></i> Bootstrap</span>
+                            <span class="badge bg-warning text-dark"><i class="bi bi-filetype-js"></i> JavaScript</span>
+                            <span class="badge" style="background-color: #3776AB; color: white;"><i class="bi bi-filetype-py"></i> Python</span>
+                            <span class="badge bg-dark text-white"><i class="bi bi-server"></i> Flask API</span>
+                            <span class="badge" style="background-color: #4479A1; color: white;"><i class="bi bi-database"></i> MySQL</span>
+                        </div>
+                    </div>
+
+                    <p class="mb-1 fw-semibold text-primary">Backend & Banco de Dados · Controle de Estoque · 2026</p>
+                    <p class="text-secondary">Sistema completo de cadastro e gerenciamento de produtos (CRUD). Desenvolvido com backend em Python (Flask) integrado a um banco de dados MySQL para armazenar e atualizar nome, marca, preço e quantidade dos itens em tempo real através de requisições de API.</p>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button class="btn btn-outline-primary" disabled><i class="bi bi-server"></i> Executado via Python/Flask</button>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal To do List - Kanban -->
+    <div class="modal fade" id="m_kanban">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">To do List - Kanban</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-scroll-container shadow-sm">
+                        <img src="./assets/img/kanban (1).png" class="modal-scroll-img" alt="To do List - Kanban - Tela 1">
+                        <img src="./assets/img/kanban (2).png" class="modal-scroll-img" alt="To do List - Kanban - Tela 2">
+                        <img src="./assets/img/kanban (3).png" class="modal-scroll-img" alt="To do List - Kanban - Tela 3">
+                        <img src="./assets/img/kanban (4).png" class="modal-scroll-img" alt="To do List - Kanban - Tela 4">
+                    </div>
+
+                    <div class="mt-3 mb-3">
+                        <h6 class="fw-bold mb-2">Tecnologias Utilizadas:</h6>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-primary text-white"><i class="bi bi-filetype-html"></i> HTML5</span>
+                            <span class="badge bg-info text-white"><i class="bi bi-filetype-css"></i> CSS3</span>
+                            <span class="badge" style="background-color: #6f42c1; color: white;"><i class="bi bi-bootstrap"></i> Bootstrap</span>
+                            <span class="badge bg-warning text-dark"><i class="bi bi-filetype-js"></i> JavaScript</span>
+                            <span class="badge" style="background-color: #3776AB; color: white;"><i class="bi bi-filetype-py"></i> Python</span>
+                            <span class="badge bg-dark text-white"><i class="bi bi-server"></i> Flask API</span>
+                            <span class="badge bg-danger text-white"><i class="bi bi-shield-lock"></i> Autenticação JWT</span>
+                            <span class="badge" style="background-color: #4479A1; color: white;"><i class="bi bi-database"></i> MySQL</span>
+                        </div>
+                    </div>
+
+                    <p class="mb-1 fw-semibold text-primary">Backend & Segurança · Gerenciamento de Tarefas · 2026</p>
+                    <p class="text-secondary">Gerenciador de tarefas estilo Kanban com autenticação segura via JSON Web Tokens (JWT) e criptografia de senhas com Werkzeug. Possui níveis de privilégios diferenciados entre administrador e usuário comum, CRUD completo de tarefas e estados, e suporte para armazenamento de arquivos anexos direto no banco de dados.</p>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button class="btn btn-outline-primary" disabled><i class="bi bi-server"></i> Executado via Python/Flask</button>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Mini App DOM -->
+    <div class="modal fade" id="m_mini_app">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Mini App DOM</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-scroll-container shadow-sm">
+                        <img src="./assets/img/mini_app.png" class="modal-scroll-img" alt="Mini App DOM - Tela Principal">
+                    </div>
+
+                    <div class="mt-3 mb-3">
+                        <h6 class="fw-bold mb-2">Tecnologias Utilizadas:</h6>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-primary text-white"><i class="bi bi-filetype-html"></i> HTML5</span>
+                            <span class="badge bg-info text-white"><i class="bi bi-filetype-css"></i> CSS3</span>
+                            <span class="badge bg-warning text-dark"><i class="bi bi-filetype-js"></i> JavaScript (DOM)</span>
+                            <span class="badge" style="background-color: #20c997; color: white;"><i class="bi bi-clock"></i> Relógio Digital</span>
+                            <span class="badge" style="background-color: #fd7e14; color: white;"><i class="bi bi-brightness-high"></i> LocalStorage Theme</span>
+                        </div>
+                    </div>
+
+                    <p class="mb-1 fw-semibold text-primary">Manipulação do DOM · Utilitários Interativos · 2026</p>
+                    <p class="text-secondary">Aplicação web interativa focada na manipulação dinâmica do DOM. Apresenta relógio digital em tempo real, controle de tema (modo escuro e claro) com persistência de estado utilizando LocalStorage, e uma lista de tarefas inteligente onde o usuário define pontos por tarefa, calculando a soma e a subtração dos pontos dinamicamente na tela.</p>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <a href="../mini_app/mini_app_dom.html" target="_blank" class="btn btn-primary">Acessar Projeto</a>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal AeroCuesta Táxi Aéreo -->
+    <div class="modal fade" id="m_aerocuesta">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">AeroCuesta Táxi Aéreo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-scroll-container shadow-sm">
+                        <img src="./assets/img/projetofinal (1).png" class="modal-scroll-img" alt="AeroCuesta Táxi Aéreo - Dashboard Principal">
+                        <img src="./assets/img/projetofinal (2).png" class="modal-scroll-img" alt="AeroCuesta Táxi Aéreo - Login">
+                    </div>
+
+                    <div class="mt-3 mb-3">
+                        <h6 class="fw-bold mb-2">Tecnologias Utilizadas:</h6>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-primary text-white"><i class="bi bi-filetype-html"></i> HTML5</span>
+                            <span class="badge bg-info text-white"><i class="bi bi-filetype-css"></i> CSS3 (Vanilla)</span>
+                            <span class="badge bg-secondary text-white"><i class="bi bi-layout-wtf"></i> Dashboard Design</span>
+                            <span class="badge" style="background-color: #20c997; color: white;"><i class="bi bi-airplane"></i> AeroCuesta Interface</span>
+                        </div>
+                    </div>
+
+                    <p class="mb-1 fw-semibold text-primary">Frontend Design · Painel de Voo & Dashboard · 2025</p>
+                    <p class="text-secondary">Interface de controle e informações para a AeroCuesta Táxi Aéreo (Botucatu, SP). O dashboard apresenta o status da frota de aeronaves (hangar vs. voo com indicadores coloridos), rotas e planos de voo do dia pela região da Cuesta paulista, boletim meteorológico METAR, relatório de manutenção e sidebar de perfil do piloto com rastreamento de horas de voo.</p>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <a href="../projetoFinal/index.html" target="_blank" class="btn btn-primary">Acessar Projeto</a>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- Modal Curso 1 -->
+    <div class="modal fade" id="modalCurso1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Python para Dados: trabalhando com funções, estruturas de dados e exceções</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="fw-semibold text-primary mb-3" style="">Instituição: Alura</h6>
+                    <p class="text-secondary mb-2">Conteúdo Aprendido:</p>
+                    <p class="text-secondary fw-medium">Desenvolvimento de estruturas condicionais e de repetição, manipulação de coleções de dados (listas, dicionários, tuplas), criação de funções customizadas, tratamento de erros e exceções em Python focados em análise de dados.</p>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Curso 2 -->
+    <div class="modal fade" id="modalCurso2">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Python para Dados: primeiros passos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="fw-semibold text-primary mb-3" style="">Instituição: Alura</h6>
+                    <p class="text-secondary mb-2">Conteúdo Aprendido:</p>
+                    <p class="text-secondary fw-medium">Introdução à sintaxe da linguagem Python, variáveis, tipos de dados básicos, operadores matemáticos e lógicos, e conceitos fundamentais para a entrada na área de ciência de dados.</p>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Curso 3 -->
+    <div class="modal fade" id="modalCurso3">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Git e GitHub: compartilhando e colaborando em projetos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="fw-semibold text-primary mb-3" style="">Instituição: Alura</h6>
+                    <p class="text-secondary mb-2">Conteúdo Aprendido:</p>
+                    <p class="text-secondary fw-medium">Controle de versão de código com Git. Criação de repositórios locais e remotos, comandos essenciais (add, commit, push, pull), gerenciamento de branches, resolução de conflitos e boas práticas de colaboração no GitHub.</p>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Curso 4 -->
+    <div class="modal fade" id="modalCurso4">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Pensamento computacional: fundamentos da computação e lógica de programação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="fw-semibold text-primary mb-3" style="">Instituição: Alura</h6>
+                    <p class="text-secondary mb-2">Conteúdo Aprendido:</p>
+                    <p class="text-secondary fw-medium">Desenvolvimento de lógica de programação por meio de pilares do pensamento computacional: decomposição de problemas, reconhecimento de padrões, abstração e design de algoritmos para resolução de problemas reais de TI.</p>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Curso 5 -->
+    <div class="modal fade" id="modalCurso5">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Inteligência emocional: práticas para o cotidiano</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="fw-semibold text-primary mb-3" style="">Instituição: Alura</h6>
+                    <p class="text-secondary mb-2">Conteúdo Aprendido:</p>
+                    <p class="text-secondary fw-medium">Desenvolvimento de soft skills essenciais para o mercado de tecnologia, incluindo autoconhecimento, autorregulação emocional, empatia, comunicação assertiva e gerenciamento de relacionamentos em equipes de desenvolvimento.</p>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Curso 6 -->
+    <div class="modal fade" id="modalCurso6">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Começando em Programação: carreira e primeiros passos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="fw-semibold text-primary mb-3" style="">Instituição: Alura</h6>
+                    <p class="text-secondary mb-2">Conteúdo Aprendido:</p>
+                    <p class="text-secondary fw-medium">Mapeamento do ecossistema de desenvolvimento de software, introdução ao mercado de TI, caminhos profissionais (Front-End, Back-End, Full-Stack) e primeiros conceitos de algoritmos.</p>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Curso 7 -->
+    <div class="modal fade" id="modalCurso7">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Competência Transversal - Tecnologia da Informação e Comunicação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="fw-semibold  mb-3" style="color: #6f42c1;">Instituição: SENAI</h6>
+                    <p class="text-secondary mb-2">Conteúdo Aprendido:</p>
+                    <p class="text-secondary fw-medium">Conceitos fundamentais de redes de computadores, internet, evolução do hardware e software, e o papel transformador da TI na sociedade e nos ambientes industriais modernos.</p>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Curso 8 -->
+    <div class="modal fade" id="modalCurso8">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Por dentro da Segurança Cibernética</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="fw-semibold  mb-3" style="color: #6f42c1;">Instituição: SENAI</h6>
+                    <p class="text-secondary mb-2">Conteúdo Aprendido:</p>
+                    <p class="text-secondary fw-medium">Fundamentos de segurança da informação, ameaças virtuais comuns (malwares, phishing), engenharia social, boas práticas de proteção de dados, senhas seguras e navegação consciente na rede.</p>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Curso 9 -->
+    <div class="modal fade" id="modalCurso9">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">FLUÊNCIA - Fundamentos da Inteligência Artificial</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="fw-semibold  mb-3" style="color: #6f42c1;">Instituição: SENAI</h6>
+                    <p class="text-secondary mb-2">Conteúdo Aprendido:</p>
+                    <p class="text-secondary fw-medium">Introdução ao conceito de IA, redes neurais, aprendizado de máquina (Machine Learning), impactos socioeconômicos da automação e uso ético de tecnologias de inteligência artificial.</p>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Curso 10 -->
+    <div class="modal fade" id="modalCurso10">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Ética na Inteligência Artificial</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="fw-semibold  mb-3" style="color: #6f42c1;">Instituição: SENAI</h6>
+                    <p class="text-secondary mb-2">Conteúdo Aprendido:</p>
+                    <p class="text-secondary fw-medium">Análise ética do uso de algoritmos, vieses em dados de treinamento, privacidade de informações, responsabilidade técnica no desenvolvimento de IAs e diretrizes para sistemas justos e transparentes.</p>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Curso 11 -->
+    <div class="modal fade" id="modalCurso11">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Excel Básico</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="fw-semibold  mb-3" style="color: #6f42c1;">Instituição: SENAI</h6>
+                    <p class="text-secondary mb-2">Conteúdo Aprendido:</p>
+                    <p class="text-secondary fw-medium">Criação e formatação de planilhas eletrônicas, uso de fórmulas essenciais (SOMA, MÉDIA, SE), gráficos estatísticos e organização de tabelas de dados para controle administrativo.</p>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Curso 12 -->
+    <div class="modal fade" id="modalCurso12">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Desvendando a Descarbonização</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="fw-semibold  mb-3" style="color: #6f42c1;">Instituição: SENAI</h6>
+                    <p class="text-secondary mb-2">Conteúdo Aprendido:</p>
+                    <p class="text-secondary fw-medium">Conceitos de sustentabilidade, pegada de carbono, fontes de energia limpa e o papel das novas tecnologias na redução de emissões e transição para uma economia verde.</p>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Curso 13 -->
+    <div class="modal fade" id="modalCurso13">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Competência Transversal - Segurança no Trabalho</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="fw-semibold  mb-3" style="color: #6f42c1;">Instituição: SENAI</h6>
+                    <p class="text-secondary mb-2">Conteúdo Aprendido:</p>
+                    <p class="text-secondary fw-medium">Normas regulamentadoras de segurança, prevenção de acidentes no ambiente profissional, ergonomia no trabalho em computadores e a importância da cultura de prevenção.</p>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

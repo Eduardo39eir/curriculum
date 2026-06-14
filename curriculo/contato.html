@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Profissional - Feedback e Contato</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+        
+        body, .content-wrapper, h1, h2, h3, h4, h5, p, span, a, button, label, .accordion-button, .form-control, .form-select, input, textarea, .button {
+            font-family: 'Outfit', sans-serif !important;
+        }
+
+        /* ==========================================================================
+           CONFIGURAÇÃO DA TRANSIÇÃO DE CORES (LIGHT / DARK MODE GLOBAL)
+           ========================================================================== */
+        body, .card, footer, nav, label, .list-group-item, h3, h5, .accordion-button, .accordion-item, .offcanvas, .phone, .time, .battery, .network, .toggle-label, .toggle-btn, .crescent, .circle, .dark, .light, .table, .modal-content, .form-control, .form-select, .theme-toggle-label, .sun-icon, .moon-icon, input, textarea, button, .button {
+            transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        /* Variáveis de cores para o tema escuro geral */
+        #switch:checked ~ .content-wrapper {
+            background-color: #1e1c24 !important;
+            color: #f7f8f7 !important;
+        }
+        #switch:checked ~ .content-wrapper .card,
+        #switch:checked ~ .content-wrapper .accordion-item,
+        #switch:checked ~ .content-wrapper .accordion-button,
+        #switch:checked ~ .content-wrapper .list-group-item,
+        #switch:checked ~ .content-wrapper .modal-content {
+            background-color: #26242E !important;
+            color: #ffffff !important;
+            border-color: #3d3a4a !important;
+        }
+        #switch:checked ~ .content-wrapper .accordion-button:not(.collapsed) {
+            background-color: rgba(137, 131, 247, 0.1) !important;
+            color: #3b8bfa !important;
+        }
+        #switch:checked ~ .content-wrapper .accordion-button {
+            color: #ffffff !important;
+        }
+        #switch:checked ~ .content-wrapper .text-muted,
+        #switch:checked ~ .content-wrapper .text-secondary,
+        #switch:checked ~ .content-wrapper .form-label {
+            color: #b3b0c2 !important;
+        }
+        #switch:checked ~ .content-wrapper .text-dark {
+            color: #ffffff !important;
+        }
+        #switch:checked ~ .content-wrapper .bg-secondary-subtle {
+            background-color: #34323D !important;
+        }
+        #switch:checked ~ .content-wrapper .offcanvas {
+            background-color: #26242E !important;
+            color: #ffffff !important;
+        }
+        #switch:checked ~ .content-wrapper .form-control,
+        #switch:checked ~ .content-wrapper .form-select {
+            background-color: #34323D !important;
+            color: #ffffff !important;
+            border-color: #4a4758 !important;
+        }
+        #switch:checked ~ .content-wrapper h3 {
+            color: #3b8bfa !important;
+        }
+
+        /* ==========================================================================
+           HEADER / NAVBAR TRADITIONAL FULL-WIDTH GLASSMORPHIC
+           ========================================================================== */
+        .content-wrapper { padding-top: 80px; }
+
+        .custom-navbar {
+            position: fixed !important;
+            top: 0; left: 0; width: 100%;
+            background-color: rgba(255,255,255,0.82) !important;
+            backdrop-filter: blur(18px) saturate(200%);
+            -webkit-backdrop-filter: blur(18px) saturate(200%);
+            border-bottom: 1px solid rgba(0,0,0,0.07) !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            transition: all 0.5s ease;
+            z-index: 1030;
+        }
+
+        #switch:checked ~ .content-wrapper .custom-navbar {
+            background-color: rgba(30, 28, 36, 0.8) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        /* Ajuste do botão menu hambúrguer para ficar visível no modo claro */
+        .navbar-toggler {
+            filter: invert(1);
+        }
+        #switch:checked ~ .content-wrapper .navbar-toggler {
+            filter: none;
+        }
+
+        .navbar-brand {
+            font-weight: 800 !important;
+            letter-spacing: 0.5px;
+            color: #0f172a !important;
+            transition: all 0.5s ease;
+        }
+
+        #switch:checked ~ .content-wrapper .navbar-brand {
+            color: #ffffff !important;
+        }
+        
+        .navbar-brand .accent-dot {
+            color: #0d6efd;
+        }
+
+        #switch:checked ~ .content-wrapper .navbar-brand .accent-dot {
+            color: #3b8bfa;
+        }
+
+        .nav-link {
+            color: #4a4a5a !important;
+            font-weight: 600;
+            padding: 0.5rem 1.2rem !important;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 50%;
+            width: 0; height: 2px;
+            background: linear-gradient(135deg, #0d6efd, #0d6efd);
+            transition: width 0.3s ease, left 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after { width: 70%; left: 15%; }
+        .nav-link:hover { color: #0d6efd !important; }
+        .nav-link.active { color: #0d6efd !important; }
+
+        #switch:checked ~ .content-wrapper .nav-link { color: #b8b8cc !important; }
+        #switch:checked ~ .content-wrapper .nav-link::after { background: linear-gradient(135deg, #3b8bfa, #A3DAFB); }
+        #switch:checked ~ .content-wrapper .nav-link:hover { color: #3b8bfa !important; }
+        #switch:checked ~ .content-wrapper .nav-link.active { color: #3b8bfa !important; }
+
+        /* Custom Theme Toggler Button */
+        .theme-toggle-label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            background-color: rgba(13, 110, 253, 0.05);
+            border: 1px solid rgba(13, 110, 253, 0.15);
+            color: #0d6efd;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .theme-toggle-label:hover {
+            background-color: rgba(13, 110, 253, 0.1);
+            transform: scale(1.05);
+        }
+
+        .theme-toggle-label .sun-icon {
+            position: absolute;
+            transform: rotate(0deg) scale(1);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+            opacity: 1;
+        }
+
+        .theme-toggle-label .moon-icon {
+            position: absolute;
+            transform: rotate(90deg) scale(0);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        #switch:checked ~ .content-wrapper .theme-toggle-label {
+            background-color: rgba(137, 131, 247, 0.1);
+            border: 1px solid rgba(137, 131, 247, 0.25);
+            color: #3b8bfa;
+        }
+
+        #switch:checked ~ .content-wrapper .theme-toggle-label:hover {
+            background-color: rgba(137, 131, 247, 0.15);
+            box-shadow: 0 0 15px rgba(137, 131, 247, 0.25);
+        }
+
+        #switch:checked ~ .content-wrapper .theme-toggle-label .sun-icon {
+            transform: rotate(-90deg) scale(0);
+            opacity: 0;
+        }
+
+        #switch:checked ~ .content-wrapper .theme-toggle-label .moon-icon {
+            transform: rotate(0deg) scale(1);
+            opacity: 1;
+        }
+
+        /* ==========================================================================
+           WIDGET SWITCH CUSTOMIZADO DO CELULAR (DENTRO DO OFFCANVAS)
+           ========================================================================== */
+        [type="checkbox"] {
+            display: none;
+        }
+
+        .phone-container {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .phone {
+            position: relative;
+            z-index: 2;
+            width: 14rem;
+            height: 14rem;
+            background-color: #ffffff;
+            box-shadow: 0 4px 25px rgba(0,0,0,.1);
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: background-color 0.5s ease;
+        }
+
+        /* Top Bar Celular */
+        .menu-phone {
+            font-size: 75%;
+            opacity: .6;
+            padding: .6rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.5s ease;
+        }
+
+        .icons-phone {
+            display: flex;
+            margin-top: .2rem;
+        }
+
+        .battery {
+            width: .75rem;
+            height: .4rem;
+            background-color: black;
+            transition: background-color 0.5s ease;
+        }
+
+        .network {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 5px 6px 5px;
+            border-color: transparent transparent black transparent;
+            transform: rotate(135deg);
+            margin: .1rem .4rem;
+            transition: border-color 0.5s ease;
+        }
+
+        .time {
+            color: black;
+            font-weight: bold;
+            transition: color 0.5s ease;
+        }
+
+        /* Middle Celular */
+        .content-phone {
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+            text-align: center;
+            width: 80%;
+            transform: translateY(-5%);
+        }
+
+        .circle {
+            position: relative;
+            border-radius: 100%;
+            width: 4.5rem;
+            height: 4.5rem;
+            background: linear-gradient(40deg, #FF0080, #FF8C00 70%);
+            margin: auto;
+            transition: background 0.5s ease;
+        }
+
+        .crescent {
+            position: absolute;
+            border-radius: 100%;
+            right: -1px;
+            top: -1px;
+            width: 3.5rem;
+            height: 3.5rem;
+            background: white;
+            transform: scale(0);
+            transform-origin: top right;
+            transition: transform .6s cubic-bezier(0.645, 0.045, 0.355, 1), background 0.5s ease;
+        }
+
+        label.toggle-label {
+            width: 100%;
+            height: 2.4rem;
+            background-color: rgba(0,0,0,.08);
+            border-radius: 100px;
+            position: relative;
+            margin: 1.2rem 0 0 0;
+            cursor: pointer;
+            display: block;
+            transition: background-color 0.5s ease;
+        }
+
+        .toggle-btn {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 2.4rem;
+            width: 50%;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,.15);
+            border-radius: 100px;
+            transition: transform .3s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.5s ease;
+        }
+
+        .names-phone {
+            font-size: 80%;
+            font-weight: bolder;
+            color: black;
+            width: 70%;
+            margin-left: 15%;
+            top: 50%;
+            transform: translateY(-50%);
+            position: absolute;
+            display: flex;
+            justify-content: space-between;
+            user-select: none;
+            z-index: 5;
+            transition: color 0.5s ease;
+        }
+
+        .names-phone p {
+            margin: 0;
+        }
+
+        .dark { opacity: .4; transition: opacity 0.3s ease; }
+        .light { opacity: 1; transition: opacity 0.3s ease; }
+
+        /* Comportamentos Modo Escuro */
+        #switch:checked + .content-wrapper .phone { background-color: #26242E; }
+        #switch:checked + .content-wrapper .phone .time { color: white; }
+        #switch:checked + .content-wrapper .phone .battery { background-color: white; }
+        #switch:checked + .content-wrapper .phone .network { border-color: transparent transparent white transparent; }
+        #switch:checked + .content-wrapper .phone label.toggle-label { background-color: rgba(255,255,255,.1); }
+        #switch:checked + .content-wrapper .phone .toggle-btn { transform: translateX(100%); background-color: #34323D; }
+        #switch:checked + .content-wrapper .phone .crescent { transform: scale(1); background: #26242E; }
+        #switch:checked + .content-wrapper .phone .circle { background: linear-gradient(40deg, #3b8bfa, #A3DAFB 70%); }
+        #switch:checked + .content-wrapper .phone .dark { opacity: 1; color: white; }
+        #switch:checked + .content-wrapper .phone .light { opacity: .4; color: #8a879a; }
+        #switch:checked + .content-wrapper .square { border-color: #3b8bfa; }
+
+        /* ==========================================================================
+           ESTILIZAÇÃO DAS ESTRELAS DE AVALIAÇÃO
+           ========================================================================== */
+        .radio {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-direction: row-reverse;
+        }
+
+        .radio > input {
+            position: absolute;
+            appearance: none;
+        }
+
+        .radio > label {
+            cursor: pointer;
+            font-size: 30px;
+            position: relative;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .radio > label > svg {
+            fill: #666;
+            transition: fill 0.3s ease;
+        }
+
+        .radio > label::before,
+        .radio > label::after {
+            content: "";
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: #ff9e0b;
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0);
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            animation: particle-explosion 1s ease-out;
+        }
+
+        .radio > label::before { top: -15px; left: 50%; transform: translateX(-50%) scale(0); }
+        .radio > label::after { bottom: -15px; left: 50%; transform: translateX(-50%) scale(0); }
+
+        .radio > label:hover::before,
+        .radio > label:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) scale(1.5);
+        }
+
+        .radio > label:hover {
+            transform: scale(1.2);
+            animation: pulse 0.6s infinite alternate;
+        }
+
+        .radio > label:hover > svg,
+        .radio > label:hover ~ label > svg {
+            fill: #ff9e0b;
+            filter: drop-shadow(0 0 15px rgba(255, 158, 11, 0.9));
+            animation: shimmer 1s ease infinite alternate;
+        }
+
+        .radio > input:checked + label > svg,
+        .radio > input:checked + label ~ label > svg {
+            fill: #ff9e0b;
+            filter: drop-shadow(0 0 15px rgba(255, 158, 11, 0.9));
+            animation: pulse 0.8s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        @keyframes particle-explosion {
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0; transform: scale(0.5); }
+        }
+
+        @keyframes shimmer {
+            0% { filter: drop-shadow(0 0 10px rgba(255, 158, 11, 0.5)); }
+            100% { filter: drop-shadow(0 0 20px rgba(255, 158, 11, 1)); }
+        }
+
+        .radio > input:checked + label:hover > svg,
+        .radio > input:checked + label:hover ~ label > svg { fill: #e58e09; }
+        .radio > label:hover > svg, .radio > label:hover ~ label > svg { fill: #ff9e0b; }
+        .radio input:checked ~ label svg { fill: #ffa723; }
+
+        /* ==========================================================================
+           ESTILIZAÇÃO DO BOTÃO CUSTOMIZADO
+           ========================================================================== */
+        .button {
+            --stone-50: #fafaf9;
+            --stone-800: #292524;
+            --yellow-400: #facc15;
+
+            font-size: 1rem;
+            cursor: pointer;
+            position: relative;
+            font-weight: bold;
+            line-height: 1;
+            padding: 1px;
+            transform: translate(-4px, -4px);
+            outline: 2px solid transparent;
+            outline-offset: 5px;
+            border-radius: 9999px;
+            background-color: var(--stone-800);
+            color: var(--stone-800);
+            transition: transform 150ms ease, box-shadow 150ms ease;
+            text-align: center;
+            border: none;
+            box-shadow:
+                0.5px 0.5px 0 0 var(--stone-800),
+                1px 1px 0 0 var(--stone-800),
+                1.5px 1.5px 0 0 var(--stone-800),
+                2px 2px 0 0 var(--stone-800),
+                2.5px 2.5px 0 0 var(--stone-800),
+                3px 3px 0 0 var(--stone-800),
+                0 0 0 2px var(--stone-50),
+                0.5px 0.5px 0 2px var(--stone-50),
+                1px 1px 0 2px var(--stone-50),
+                1.5px 1.5px 0 2px var(--stone-50),
+                2px 2px 0 2px var(--stone-50),
+                2.5px 2.5px 0 2px var(--stone-50),
+                3px 3px 0 2px var(--stone-50),
+                3.5px 3.5px 0 2px var(--stone-50),
+                4px 4px 0 2px var(--stone-50);
+
+            &:hover {
+                transform: translate(0, 0);
+                box-shadow: 0 0 0 2px var(--stone-50);
+            }
+
+            &:active,
+            &:focus-visible {
+                outline-color: var(--yellow-400);
+            }
+
+            &:focus-visible {
+                outline-style: dashed;
+            }
+
+            & > div {
+                position: relative;
+                pointer-events: none;
+                background-color: var(--yellow-400);
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                border-radius: 9999px;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    inset: 0;
+                    border-radius: 9999px;
+                    opacity: 0.5;
+                    background-image: 
+                        radial-gradient(rgb(255 255 255 / 80%) 20%, transparent 20%),
+                        radial-gradient(rgb(255 255 255 / 100%) 20%, transparent 20%);
+                    background-position: 0 0, 4px 4px;
+                    background-size: 8px 8px;
+                    mix-blend-mode: hard-light;
+                    animation: dots 0.5s infinite linear;
+                }
+
+                & > span {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0.75rem 1.25rem;
+                    gap: 0.25rem;
+                    filter: drop-shadow(0 -1px 0 rgba(255, 255, 255, 0.25));
+
+                    &:active {
+                        transform: translateY(2px);
+                    }
+                }
+            }
+        }
+
+        @keyframes dots {
+            0% { background-position: 0 0, 4px 4px; }
+            100% { background-position: 8px 0, 12px 4px; }
+        }
+
+
+
+        /* Footer Customizado Premium */
+        .custom-footer {
+            background-color: #0f0e13;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #e2e8f0;
+            transition: all 0.5s ease;
+        }
+
+        #switch:checked ~ .content-wrapper .custom-footer {
+            background-color: #0c0b0f;
+            border-top: 1px solid rgba(137, 131, 247, 0.1);
+        }
+
+        .footer-brand {
+            font-size: 1.5rem;
+            color: #ffffff;
+            font-weight: 800;
+        }
+
+        .footer-brand .accent-dot {
+            color: #0d6efd;
+        }
+
+        #switch:checked ~ .content-wrapper .footer-brand .accent-dot {
+            color: #3b8bfa;
+        }
+
+        .footer-desc {
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+
+        .footer-section-title {
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-link {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-link:hover {
+            color: #0d6efd;
+            transform: translateX(5px);
+        }
+
+        #switch:checked ~ .content-wrapper .footer-link:hover {
+            color: #3b8bfa;
+        }
+
+        .footer-link-active {
+            color: #0d6efd;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        #switch:checked ~ .content-wrapper .footer-link-active {
+            color: #3b8bfa;
+        }
+
+        .footer-divider {
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Social Buttons */
+        .social-icons-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-circle-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .social-circle-btn:hover {
+            color: #ffffff;
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4);
+        }
+
+        #switch:checked ~ .content-wrapper .social-circle-btn:hover {
+            background-color: #3b8bfa;
+            border-color: #3b8bfa;
+            box-shadow: 0 5px 15px rgba(137, 131, 247, 0.4);
+        }
+
+        /* Card de Contato */
+        .contact-card {
+            border-radius: 40px !important;
+            border: 5px solid rgb(255, 255, 255) !important;
+            background-color: rgb(244, 247, 251) !important;
+            box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px !important;
+            padding: 3rem !important;
+            transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .contact-card .card-title {
+            text-align: center;
+            font-weight: 900 !important;
+            font-size: 30px !important;
+            color: rgb(16, 137, 211) !important;
+        }
+
+        #switch:checked ~ .content-wrapper .contact-card {
+            background-color: #26242E !important;
+            border: 5px solid #3d3a4a !important;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 30px -20px !important;
+        }
+
+        #switch:checked ~ .content-wrapper .contact-card .card-title {
+            color: #3b8bfa !important;
+        }
+
+        /* Inputs Customizados */
+        .form-control, .form-select {
+            border-radius: 20px !important;
+            border: none !important;
+            padding: 15px 20px !important;
+            box-shadow: #cff0ff 0px 10px 10px -5px !important;
+            border-inline: 2px solid transparent !important;
+            background-color: #ffffff !important;
+            color: #212529 !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .form-control::-moz-placeholder {
+            color: rgb(170, 170, 170) !important;
+        }
+        .form-control::placeholder {
+            color: rgb(170, 170, 170) !important;
+        }
+
+        .form-control:focus, .form-select:focus {
+            outline: none !important;
+            border-inline: 2px solid #12b1d1 !important;
+            box-shadow: #cff0ff 0px 10px 10px -5px, 0 0 0 0.25rem rgba(18, 177, 209, 0.15) !important;
+            background-color: #ffffff !important;
+        }
+
+        /* Dark Mode overrides para Inputs */
+        #switch:checked ~ .content-wrapper .form-control,
+        #switch:checked ~ .content-wrapper .form-select {
+            background-color: #34323D !important;
+            color: #ffffff !important;
+            border-color: transparent !important;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 10px 10px -5px !important;
+            border-inline: 2px solid transparent !important;
+        }
+
+        #switch:checked ~ .content-wrapper .form-control::-moz-placeholder {
+            color: rgba(255, 255, 255, 0.6) !important;
+        }
+        #switch:checked ~ .content-wrapper .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6) !important;
+        }
+
+        #switch:checked ~ .content-wrapper .form-control:focus,
+        #switch:checked ~ .content-wrapper .form-select:focus {
+            border-inline: 2px solid #3b8bfa !important;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 10px 10px -5px, 0 0 0 0.25rem rgba(137, 131, 247, 0.25) !important;
+            background-color: #34323D !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <input id="switch" type="checkbox" checked>
+
+    <div class="content-wrapper bg-light d-flex flex-column min-vh-100">
+
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top custom-navbar shadow">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="index.html">Eduardo | Currículo & Portfólio Digital<span class="accent-dot">.</span></a>
+                
+                <div class="d-flex align-items-center order-lg-last ms-3">
+                    <label for="switch" class="theme-toggle-label" title="Alternar tema (Claro / Escuro)">
+                        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <path d="M12 2v2"></path>
+                            <path d="M12 20v2"></path>
+                            <path d="M4.93 4.93l1.41 1.41"></path>
+                            <path d="M17.66 17.66l1.41 1.41"></path>
+                            <path d="M2 12h2"></path>
+                            <path d="M20 12h2"></path>
+                            <path d="M6.34 17.66l-1.41 1.41"></path>
+                            <path d="M19.07 4.93l-1.41 1.41"></path>
+                        </svg>
+                        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                        </svg>
+                    </label>
+                    
+                    <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" 
+                        aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+ 
+                <div class="collapse navbar-collapse" id="navMenu">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-semibold text-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="portfolio.html">Portfólio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="contato.html">Contato</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container my-5 flex-grow-1">
+            <div class="row g-4 justify-content-center">
+                <div class="col-12 col-md-8">
+                    
+                    <div class="card contact-card shadow-lg">
+                        <h3 class="card-title fw-bold fs-4 text-primary mb-4">Formulário de Feedback</h3>
+                        
+                        <form action="https://formsubmit.co/edufloriano11@gmail.com" method="POST">
+                            <input type="hidden" name="_subject" value="Novo Feedback do Portfólio!">
+                            <div class="mb-3">
+                                <label for="nomeCompleto" class="form-label small fw-semibold text-secondary">Nome:</label>
+                                <input type="text" name="nome" class="form-control form-control-sm" id="nomeCompleto" placeholder="Seu nome" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label small fw-semibold text-secondary">E-mail:</label>
+                                <input type="email" name="email" class="form-control form-control-sm" id="email" placeholder="seu@email.com" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="feedbackTexto" class="form-label small fw-semibold text-secondary">Feedback sobre o meu perfil e projetos:</label>
+                                <textarea name="feedback" class="form-control form-control-sm" id="feedbackTexto" rows="4" placeholder="O que você achou do meu perfil e dos meus projetos?" required></textarea>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label small fw-semibold text-secondary d-block text-center">Qual nota daria para este perfil?</label>
+                                
+                                <div class="radio py-2">
+                                    <input id="rating-5" type="radio" name="rating" value="5" required />
+                                    <label for="rating-5" title="5 estrelas">
+                                        <svg viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                                        </svg>
+                                    </label>
+
+                                    <input id="rating-4" type="radio" name="rating" value="4" />
+                                    <label for="rating-4" title="4 estrelas">
+                                        <svg viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                                        </svg>
+                                    </label>
+
+                                    <input id="rating-3" type="radio" name="rating" value="3" />
+                                    <label for="rating-3" title="3 estrelas">
+                                        <svg viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                                        </svg>
+                                    </label>
+
+                                    <input id="rating-2" type="radio" name="rating" value="2" />
+                                    <label for="rating-2" title="2 estrelas">
+                                        <svg viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                                        </svg>
+                                    </label>
+
+                                    <input id="rating-1" type="radio" name="rating" value="1" />
+                                    <label for="rating-1" title="1 estrela">
+                                        <svg viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                                        </svg>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-center mt-4">
+                                <button type="submit" class="button">
+                                    <div>
+                                        <span>Enviar Feedback</span>
+                                    </div>
+                                </button>
+                            </div>
+                        </form>
+
+                        <hr class="my-4">
+                        <p class="small text-secondary m-0 text-center">E-mail pessoal: <span class="fw-bold">edufloriano11@gmail.com</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function() {
+  var sw = document.getElementById('switch');
+  var saved = localStorage.getItem('theme');
+  if (saved === 'light') {
+    sw.checked = false;
+  } else {
+    sw.checked = true;
+    localStorage.setItem('theme', 'dark');
+  }
+  sw.addEventListener('change', function() {
+    localStorage.setItem('theme', sw.checked ? 'dark' : 'light');
+  });
+})();
+</script>
+</body>
+
+</html>

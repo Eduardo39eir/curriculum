@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Mini App DOM</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+            margin: 0;
+            background: #f0f4f8;
+            color: #222;
+            transition: background 0.3s, color 0.3s;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .dark {
+            background: #23272f;
+            color: #f0f0f0;
+        }
+        .container {
+            max-width: 420px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px 0 rgba(31, 38, 135, 0.10);
+            padding: 32px 24px 24px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .dark .container {
+            background: #2d323c;
+            color: #f0f0f0;
+            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.25);
+        }
+        h2 {
+            margin-bottom: 24px;
+            color: #3b3b3b;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        .dark h2 {
+            color: #e0e7ff;
+        }
+        #email {
+            padding: 10px;
+            font-size: 1.1em;
+            border: 1.5px solid #bfc9d9;
+            border-radius: 8px;
+            outline: none;
+            margin-bottom: 18px;
+            width: 100%;
+            background: #f7faff;
+            box-sizing: border-box; /* Garante que o padding não quebre a largura */
+        }
+        .dark #email {
+            background: #353945;
+            color: #f0f0f0;
+            border: 1px solid #6366f1;
+        }
+        #validar {
+            background: #6366f1;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 0;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 18px;
+        }
+        #validar:hover {
+            background: #4f46e5;
+        }
+        #msg {
+            min-height: 22px;
+            font-size: 1em;
+            color: #e11d48;
+            text-align: center;
+            margin-top: 0;
+        }
+        .dark #msg {
+            color: #f87171;
+        }
+        #tema-btn {
+            background: #fff;
+            color: #6366f1;
+            border: 1.5px solid #6366f1;
+            border-radius: 6px;
+            padding: 8px 18px;
+            font-size: 1em;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s, color 0.2s;
+        }
+        #tema-btn:hover {
+            background: #e0e7ff;
+        }
+        .dark #tema-btn {
+            background: #23272f;
+            color: #e0e7ff;
+            border-color: #e0e7ff;
+        }
+        .dark #tema-btn:hover {
+            background: #353945;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Login através de seu E-mail</h2>
+        <input type="email" id="email" placeholder="Digite seu e-mail">
+        <button id="validar">Finalizar login</button>
+        <p id="msg"></p>
+        <button id="tema-btn" style="margin-top:10px;">Tema Escuro</button>
+    </div>
+
+    <script>
+        // 1. Lógica do Tema Claro/Escuro
+        const temaBtn = document.getElementById('tema-btn');
+        temaBtn.addEventListener('click', function() {
+            document.body.classList.toggle('dark');
+            if (document.body.classList.contains('dark')) {
+                temaBtn.textContent = 'Tema Claro';
+            } else {
+                temaBtn.textContent = 'Tema Escuro';
+            }
+        });
+
+        // 2. Lógica de Validação do E-mail
+        const btnValidar = document.getElementById("validar");
+        
+        btnValidar.addEventListener("click", function() {
+            const emailValue = document.getElementById("email").value;
+            const msg = document.getElementById("msg");
+            let emailValido = false;
+
+            // Validação simples procurando o @
+            for (let letra of emailValue) {
+                if (letra === "@") {
+                    emailValido = true;
+                    break; 
+                }
+            }
+
+            if (emailValido) {
+                msg.innerText = "E-mail válido! Redirecionando...";
+                msg.style.color = "green";
+                setTimeout(function() {
+                    // Nota: Verifique se este arquivo existe na sua pasta!
+                    window.location.href = "mini_app_dom.html";
+                }, 1200);
+            } else {
+                msg.innerText = "E-mail inválido! (Falta o @)";
+                msg.style.color = "red";
+            }
+        });
+    </script>
+</body>
+</html>

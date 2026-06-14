@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style_login.css">
+    <title>Portal de Voo - Login</title>
+
+</head>
+
+<body>
+    <main>
+        <div id="loginPage">
+            <div class="login-box">
+
+                <div class="login-logo">
+                    <img class="aviao" src="img/Design sem nome.png" alt="" width="150" height="150">
+                    <img src="img/Design sem nome (1).png" alt="" width="150" height="150">
+                </div>
+
+                <h1>Portal de Voo</h1>
+
+                <form id="loginForm" action="index.html" method="get">
+                        <div class="id-piloto">
+                            <label for="pilotoId">ID de Piloto:</label>
+                            <input type="text" id="pilotoId" name="piloto_id" placeholder="Ex: AC-117" required
+                                minlength="6">
+                        </div>
+
+                        <div class="senha">
+                            <label for="senha">Senha:</label>
+                            <input type="password" id="senha" name="piloto_senha" placeholder="Sua senha" required
+                                minlength="8">
+                        </div>
+
+                        <button type="submit" class="button-login">
+                            Login
+                        </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+body {
+    background-image: linear-gradient(to bottom, rgb(18, 34, 255), rgb(115, 215, 255));
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.login-logo {
+    position: relative;
+    width: 200px;  /* defina o tamanho do container */
+    height: 200px;
+    margin: 0 auto; /* centraliza o container */
+}
+
+.login-logo img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;  /* faz a imagem preencher o container */
+    height: auto;
+}
+
+.login-logo .aviao {
+    z-index: 100;
+    width: 200px;
+    animation: girar 2.7s linear infinite ;
+    transition: transform 4s ease, background-color 4s ease;
+}
+ .aviao:hover {
+        transform: scale(1.1);
+ }
+
+h1 {
+    color: navy;
+    text-align: center;
+}
+
+main {
+    max-width: 400px;
+    padding: 50px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin-top: 100px;
+}
+
+.loginForm {
+    margin-bottom: 15px;
+}
+
+.loginForm label {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"],
+input[type="password"],
+
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    background-color: #05d120;
+    font-size: 18px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    margin-top: 10px;
+}
+button:hover {
+    background-color: #219c2b;
+}
+
+@keyframes girar {
+    0% {
+        rotate: 0deg;
+    }
+    10%{
+        rotate: 4deg;
+    }
+    20%{
+        rotate: 8deg;
+    }
+    22.5%{
+        rotate: 9deg;
+    }
+    28.5%{
+        rotate: 10deg;
+    }
+    32.5%{
+        rotate: 9deg;
+    }
+    35.5%{
+        rotate: 8deg;
+    }
+    50% {
+        rotate: 0deg;
+    }
+    60%{
+        rotate: -4deg;
+    }
+    70%{
+        rotate: -8deg;
+    }
+    72.5%{
+        rotate: -9deg;
+    }
+    78.5%{
+        rotate: -10deg;
+    }
+    82.5%{
+        rotate: -9deg;
+    }
+    85.5%{
+        rotate: -8deg;
+    }
+    100% {
+        rotate: 0deg;
+    }
+
+}
+

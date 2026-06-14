@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini App Completo DOM</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+            margin: 0;
+            background: #f0f4f8;
+            color: #222;
+            transition: background 0.3s, color 0.3s;
+        }
+        .dark {
+            background: #23272f;
+            color: #f0f0f0;
+        }
+        .dark .navbar {
+            background: #181a20;
+            color: #fff;
+        }
+        .dark .navbar button {
+            background: #23272f;
+            color: #e0e7ff;
+        }
+        .dark .navbar button:hover {
+            background: #353945;
+        }
+        .dark .container {
+            background: #2d323c;
+            color: #f0f0f0;
+            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.25);
+        }
+        .dark #todo-section,
+        .dark #calc-section {
+            background: #23272f;
+        }
+        .dark #todo-list li {
+            background: #353945;
+            color: #f0f0f0;
+        }
+        .dark #todo-list li button {
+            background: #e11d48;
+            color: #fff;
+        }
+        .dark #todo-list li button:hover {
+            background: #be123c;
+        }
+        .dark #todo-counter {
+            color: #a5b4fc;
+        }
+        .dark #relogio {
+            color: #a5b4fc;
+        }
+        .dark #todo-input,
+        .dark .calc-inputs input {
+            background: #353945;
+            color: #f0f0f0;
+            border: 1px solid #6366f1;
+        }
+        .dark #todo-add,
+        .dark .calc-buttons button {
+            background: #6366f1;
+            color: #fff;
+        }
+        .dark #todo-add:hover,
+        .dark .calc-buttons button:hover {
+            background: #4f46e5;
+        }
+        .dark #calc-result {
+            color: #a5b4fc;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #6366f1;
+            color: #fff;
+            padding: 16px 32px;
+        }
+        .navbar h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+        .navbar button {
+            background: #fff;
+            color: #6366f1;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 18px;
+            font-size: 1em;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s, color 0.2s;
+        }
+        .navbar button:hover {
+            background: #e0e7ff;
+        }
+        .container {
+            max-width: 420px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px 0 rgba(31, 38, 135, 0.10);
+            padding: 32px 24px 24px 24px;
+        }
+        .hidden { display: none; }
+        /* Painel */
+        #painel {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+        /* Relógio */
+        #relogio {
+            font-size: 2.2em;
+            text-align: center;
+            margin-bottom: 8px;
+            color: #6366f1;
+        }
+        /* To-Do */
+        #todo-section {
+            background: #f7faff;
+            border-radius: 10px;
+            padding: 18px 14px 14px 14px;
+        }
+        #todo-input {
+            padding: 8px;
+            font-size: 1em;
+            border-radius: 6px;
+            border: 1px solid #bfc9d9;
+            width: 70%;
+        }
+        #todo-add {
+            padding: 8px 16px;
+            margin-left: 5px;
+            border-radius: 6px;
+            border: none;
+            background: #6366f1;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        #todo-add:hover {
+            background: #4f46e5;
+        }
+        #todo-list {
+            margin-top: 16px;
+            padding: 0;
+            list-style: none;
+        }
+        #todo-list li {
+            background: #fff;
+            padding: 8px 12px;
+            margin-bottom: 6px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 4px rgba(99,102,241,0.04);
+        }
+        #todo-list li button {
+            background: #e11d48;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 2px 10px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        #todo-list li button:hover {
+            background: #be123c;
+        }
+        #todo-counter {
+            font-size: 1em;
+            color: #6366f1;
+            margin-top: 6px;
+        }
+        /* Calculadora */
+        #calc-section {
+            background: #f7faff;
+            border-radius: 10px;
+            padding: 18px 14px 14px 14px;
+        }
+        .calc-inputs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .calc-inputs input {
+            padding: 8px;
+            font-size: 1em;
+            border-radius: 6px;
+            border: 1px solid #bfc9d9;
+            width: 90px;
+        }
+        .calc-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .calc-buttons button {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            background: #6366f1;
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+        .calc-buttons button:hover {
+            background: #4f46e5;
+        }
+        #calc-result {
+            font-size: 1.1em;
+            color: #6366f1;
+            min-height: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>Mini App DOM</h1>
+        <div>
+            <button id="tema-btn">Tema Escuro</button>
+            <button id="logout-btn" style="margin-left:12px;">Sair</button>
+        </div>
+    </div>
+    <div class="container">
+        <div id="painel">
+            <div id="relogio"></div>
+            <div id="todo-section">
+                <h3>Lista de Tarefas</h3>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                    <input id="todo-input" placeholder="Digite uma tarefa">
+                    <input id="todo-pontos" type="number" placeholder="Pontos" style="width:80px;">
+                    <button id="todo-add">Adicionar</button>
+                </div>
+                <ul id="todo-list"></ul>
+                <div id="pontos-soma" style="margin-top:8px; color:#6366f1; font-weight:600;"></div>
+                <div id="pontos-sub" style="margin-top:2px; color:#e11d48; font-weight:600;"></div>
+            </div>
+            <!-- Calculadora removida. Nova lógica de pontos na lista de tarefas será adicionada abaixo. -->
+        </div>
+    </div>
+    <script>
+        // Tema claro/escuro
+        const temaBtn = document.getElementById('tema-btn');
+        temaBtn.addEventListener('click', function() {
+            document.body.classList.toggle('dark');
+            temaBtn.textContent = document.body.classList.contains('dark') ? 'Tema Claro' : 'Tema Escuro';
+        });
+
+        // Botão de sair
+        const logout = document.getElementById('logout-btn');
+        logout.addEventListener('click', function() {
+            window.location.href = 'login.html';
+        });
+
+        // Painel já visível, login removido
+
+        // Relógio digital
+        var relogio = document.getElementById('relogio');
+        function atualizarRelogio() {
+            var agora = new Date();
+            relogio.innerText = agora.toLocaleTimeString();
+            setTimeout(atualizarRelogio, 1000);
+        }
+
+        atualizarRelogio();
+
+        // To-Do List
+        var input = document.getElementById('todo-input');
+        var pontosInput = document.getElementById('todo-pontos');
+        var button = document.getElementById('todo-add');
+        var lista = document.getElementById('todo-list');
+        // Array para armazenar as tarefas, cada uma com texto e pontos
+        var listaTarefas = [];
+
+        // Adiciona tarefa ao clicar no botão
+        button.addEventListener("click", adicionar);
+
+        // Atualiza a soma e subtração dos pontos das tarefas
+        function atualizarPontos() {
+            // Soma todos os pontos das tarefas
+            var somaPontos = listaTarefas.reduce((total, tarefaAtual) => total + tarefaAtual.pontos, 0);
+            // Subtrai todos os pontos das tarefas a partir de zero
+            var subtracaoPontos = listaTarefas.reduce((total, tarefaAtual) => total - tarefaAtual.pontos, 0);
+            document.getElementById('pontos-soma').textContent = 'Soma dos pontos: ' + somaPontos;
+            document.getElementById('pontos-sub').textContent = 'Subtração dos pontos: ' + subtracaoPontos;
+        }
+
+        // Mostra todas as tarefas na lista
+        function renderizarTarefas() {
+            lista.innerHTML = '';
+            // Para cada tarefa, cria um item na lista com botão de remover
+            listaTarefas.forEach((tarefaObj, indiceTarefa) => {
+                var itemLista = document.createElement('li');
+                // Mostra o texto e os pontos da tarefa
+                itemLista.textContent = tarefaObj.texto + ' (Pontos: ' + tarefaObj.pontos + ')';
+                // Cria botão X para remover a tarefa
+                var botaoRemover = document.createElement('button');
+                botaoRemover.textContent = 'X';
+                botaoRemover.onclick = function() {
+                    // Remove a tarefa do array e atualiza a tela
+                    listaTarefas.splice(indiceTarefa, 1);
+                    renderizarTarefas();
+                    atualizarPontos();
+                };
+                itemLista.appendChild(botaoRemover);
+                lista.appendChild(itemLista);
+            });
+        }
+
+        // Adiciona uma nova tarefa ao array e atualiza a tela
+        function adicionar() {
+            var textoTarefa = input.value.trim();
+            var pontosTarefa = parseInt(pontosInput.value, 10);
+            // Só adiciona se ambos os campos estiverem preenchidos corretamente
+            if (textoTarefa === '' || isNaN(pontosTarefa)) return;
+            listaTarefas.push({ texto: textoTarefa, pontos: pontosTarefa });
+            input.value = '';
+            pontosInput.value = '';
+            renderizarTarefas();
+            atualizarPontos();
+            input.focus();
+        }
+
+        // Inicializa a exibição dos pontos ao carregar a página
+        atualizarPontos();
+
+        // Calculadora
+        const calcNum1 = document.getElementById('calc-num1');
+        const calcNum2 = document.getElementById('calc-num2');
+        const calcResult = document.getElementById('calc-result');
+        document.getElementById('calc-somar').onclick = function() {
+            calcResult.textContent = 'Resultado: ' + (parseFloat(calcNum1.value) + parseFloat(calcNum2.value));
+        };
+        document.getElementById('calc-subtrair').onclick = function() {
+            calcResult.textContent = 'Resultado: ' + (parseFloat(calcNum1.value) - parseFloat(calcNum2.value));
+        };
+    </script>
+</body>
+</html>
