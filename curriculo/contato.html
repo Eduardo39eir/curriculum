@@ -888,6 +888,41 @@
   sw.addEventListener('change', function() {
     localStorage.setItem('theme', sw.checked ? 'dark' : 'light');
   });
+
+  // Interceptador do formulário de feedback para enviar por email
+  var form = document.querySelector('form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      var nome = document.getElementById('nomeCompleto').value.trim();
+      var email = document.getElementById('email').value.trim();
+      var feedback = document.getElementById('feedbackTexto').value.trim();
+      
+      var ratingVal = "Não informada";
+      var ratingInput = document.querySelector('input[name="rating"]:checked');
+      if (ratingInput) {
+        ratingVal = ratingInput.value;
+      }
+      
+      var emailDestinatario = "edufloriano11@gmail.com";
+      var assunto = "Feedback do Portfólio - " + nome;
+      
+      var corpo = "Olá Eduardo,\n\n" +
+                  "Gostaria de enviar o seguinte feedback sobre seu perfil e projetos:\n\n" +
+                  "Nome: " + nome + "\n" +
+                  "E-mail de Contato: " + email + "\n" +
+                  "Nota para o Perfil: " + ratingVal + " / 5 Estrelas\n\n" +
+                  "Mensagem:\n" + feedback + "\n\n" +
+                  "Atenciosamente,\n" + nome;
+                  
+      var mailtoUrl = "mailto:" + emailDestinatario + 
+                      "?subject=" + encodeURIComponent(assunto) + 
+                      "&body=" + encodeURIComponent(corpo);
+                      
+      window.location.href = mailtoUrl;
+    });
+  }
 })();
 </script>
 </body>
